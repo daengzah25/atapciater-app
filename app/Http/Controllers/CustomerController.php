@@ -32,7 +32,7 @@ class CustomerController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'asal_kota' => 'nullable|string|max:255',
-            'testimoni' => 'required|string|min:10|max:500',
+            'testimoni' => 'required|string|max:500',
             'rating' => 'required|integer|min:1|max:5',
         ]);
 

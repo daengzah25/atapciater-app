@@ -1172,7 +1172,7 @@
                         <textarea id="testimoni" name="testimoni" required rows="5"
                             style="width: 100%; padding: 0.875rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; resize: vertical;"
                             placeholder="Bagikan pengalaman Anda camping di Atap Ciater...">{{ old('testimoni') }}</textarea>
-                        <small style="color: #666; font-size: 0.875rem;">Minimal 10 karakter</small>
+                        {{-- <small style="color: #666; font-size: 0.875rem;">Minimal 10 karakter</small> --}}
                     </div>
 
                     <button type="submit"
@@ -1374,20 +1374,20 @@
                 });
             });
 
-            // Form validation
-            document.getElementById('testimonialForm').addEventListener('submit', function(e) {
-                const testimoni = document.getElementById('testimoni').value.trim();
-                if (testimoni.length < 10) {
-                    e.preventDefault();
-                    alert('Testimoni harus minimal 10 karakter.');
-                    return false;
-                }
+            // // Form validation
+            // document.getElementById('testimonialForm').addEventListener('submit', function(e) {
+            //     const testimoni = document.getElementById('testimoni').value.trim();
+            //     if (testimoni.length < 10) {
+            //         e.preventDefault();
+            //         alert('Testimoni harus minimal 10 karakter.');
+            //         return false;
+            //     }
 
-                // Show loading state
-                const submitBtn = this.querySelector('button[type="submit"]');
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
-                submitBtn.disabled = true;
-            });
+            //     // Show loading state
+            //     const submitBtn = this.querySelector('button[type="submit"]');
+            //     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            //     submitBtn.disabled = true;
+            // });
         });
     </script>
 </body>
