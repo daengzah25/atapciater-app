@@ -844,6 +844,15 @@
 
             +
         }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .rating-star:hover,
+        .rating-star.active {
+            color: #ffc107 !important;
+        }
     </style>
 </head>
 
@@ -1041,6 +1050,119 @@
         </div>
     </section>
 
+    <!-- Section Testimoni -->
+    <section id="testimoni" style="padding: 4rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1rem;">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="color: #2e7d32; font-size: 2.5rem; margin-bottom: 1rem;">Testimoni Pelanggan</h2>
+                <p style="color: #666; font-size: 1.1rem;">Apa kata mereka tentang pengalaman camping di Atap Ciater
+                </p>
+            </div>
+
+            <!-- Daftar Testimoni -->
+            <div class="testimonials-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+                @foreach ($testimonials as $testimonial)
+                    <div class="testimonial-card"
+                        style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+                        <div class="testimonial-header"
+                            style="display: flex; justify-content: between; align-items: start; margin-bottom: 1.5rem;">
+                            <div>
+                                <h4 style="margin: 0; color: #2e7d32; font-size: 1.2rem;">{{ $testimonial->nama }}
+                                </h4>
+                                <p style="margin: 0.25rem 0 0 0; color: #666; font-size: 0.9rem;">
+                                    {{ $testimonial->asal_kota ?: 'Tidak disebutkan' }}
+                                </p>
+                            </div>
+                            <div class="rating" style="color: #ffc107; font-weight: bold;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <i class="fas fa-star{{ $i <= $testimonial->rating ? '' : '-half-alt' }}"
+                                        style="color: #ffc107;"></i>
+                                @endfor
+                            </div>
+                        </div>
+                        <div class="testimonial-content">
+                            <p style="margin: 0; color: #333; font-style: italic; line-height: 1.6;">
+                                "{{ $testimonial->testimoni }}"
+                            </p>
+                        </div>
+                        <div class="testimonial-date" style="margin-top: 1rem; text-align: right;">
+                            <small style="color: #999;">
+                                {{ \Carbon\Carbon::parse($testimonial->created_at)->translatedFormat('d F Y') }}
+                            </small>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Form Testimoni -->
+            <div class="testimonial-form-container"
+                style="max-width: 600px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);">
+                <h3 style="text-align: center; color: #2e7d32; margin-bottom: 2rem;">Beri Testimoni Anda</h3>
+
+                @if (session('success'))
+                    <div
+                        style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #c3e6cb;">
+                        <i class="fas fa-check-circle"></i> {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('testimonial.store') }}" method="POST" id="testimonialForm">
+                    @csrf
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="nama"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333;">Nama
+                            *</label>
+                        <input type="text" id="nama" name="nama" required
+                            style="width: 100%; padding: 0.875rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;"
+                            placeholder="Masukkan nama Anda">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="asal_kota"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333;">Asal
+                            Kota</label>
+                        <input type="text" id="asal_kota" name="asal_kota"
+                            style="width: 100%; padding: 0.875rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;"
+                            placeholder="Contoh: Bandung, Jakarta">
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="rating"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333;">Rating
+                            *</label>
+                        <div class="rating-input" style="display: flex; gap: 0.5rem;">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <label style="cursor: pointer;">
+                                    <input type="radio" name="rating" value="{{ $i }}"
+                                        {{ $i == 5 ? 'checked' : '' }} style="display: none;">
+                                    <i class="fas fa-star rating-star" data-rating="{{ $i }}"
+                                        style="font-size: 2rem; color: #ddd; transition: color 0.3s ease;"></i>
+                                </label>
+                            @endfor
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="testimoni"
+                            style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333;">Testimoni
+                            *</label>
+                        <textarea id="testimoni" name="testimoni" required rows="5"
+                            style="width: 100%; padding: 0.875rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; resize: vertical;"
+                            placeholder="Bagikan pengalaman Anda camping di Atap Ciater..."></textarea>
+                        <small style="color: #666; font-size: 0.875rem;">Minimal 10 karakter</small>
+                    </div>
+
+                    <button type="submit"
+                        style="width: 100%; background: linear-gradient(135deg, #4caf50, #2e7d32); color: white; padding: 1rem 2rem; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: transform 0.3s ease;">
+                        <i class="fas fa-paper-plane"></i> Kirim Testimoni
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Footer -->
     <footer class="footer" id="kontak">
         <div class="footer-grid">
@@ -1096,6 +1218,7 @@
         <div class="footer-bottom">
             <p>&copy; 2025 Atap Ciater. Semua Hak Dilindungi.</p>
         </div>
+
     </footer>
 
     <script>
@@ -1176,6 +1299,64 @@
             }
             lastTouchEnd = now;
         }, false);
+
+
+        // Rating stars interaction
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.rating-star');
+            let selectedRating = 5;
+
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = this.getAttribute('data-rating');
+                    selectedRating = rating;
+
+                    // Update stars display
+                    stars.forEach(s => {
+                        const starRating = s.getAttribute('data-rating');
+                        if (starRating <= rating) {
+                            s.style.color = '#ffc107';
+                        } else {
+                            s.style.color = '#ddd';
+                        }
+                    });
+
+                    // Update hidden input
+                    document.querySelectorAll('input[name="rating"]').forEach(input => {
+                        input.checked = input.value == rating;
+                    });
+                });
+
+                star.addEventListener('mouseenter', function() {
+                    const rating = this.getAttribute('data-rating');
+                    stars.forEach(s => {
+                        const starRating = s.getAttribute('data-rating');
+                        if (starRating <= rating) {
+                            s.style.color = '#ffc107';
+                        }
+                    });
+                });
+
+                star.addEventListener('mouseleave', function() {
+                    stars.forEach(s => {
+                        const starRating = s.getAttribute('data-rating');
+                        if (starRating > selectedRating) {
+                            s.style.color = '#ddd';
+                        }
+                    });
+                });
+            });
+
+            // Form validation
+            document.getElementById('testimonialForm').addEventListener('submit', function(e) {
+                const testimoni = document.getElementById('testimoni').value;
+                if (testimoni.length < 10) {
+                    e.preventDefault();
+                    alert('Testimoni harus minimal 10 karakter.');
+                    return false;
+                }
+            });
+        });
     </script>
 </body>
 

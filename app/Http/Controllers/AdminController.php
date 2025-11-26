@@ -6,6 +6,7 @@ use App\Models\Addons;
 use App\Models\DaftarPaket;
 use App\Models\Pesanan;
 use App\Models\Libur;
+use App\Models\Testimonial;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -436,5 +437,52 @@ class AdminController extends Controller
     {
         $libur = Libur::findOrFail($id);
         return response()->json($libur);
+    }
+
+    public function kelolaTestimoni(Request $request)
+    {
+        $query = Testimonial::query();
+
+        // Filter berdasarkan status
+        if ($request->has('filter_status') && $request->filter_status != '') {
+            if ($request->filter_status == 'approved') {
+                $query->where('is_approved', true);
+            } elseif ($request->filter_status == 'pending') {
+                $query->where('is_approved', false);
+            }
+        }
+
+        // Filter berdasarkan rating
+        if ($request->has('filter_rating') && $request->filter_rating != '') {
+            $query->where('rating', $request->filter_rating);
+        }
+
+        $testimonials = $query->orderBy('created_at', 'desc')->get();
+
+        return view('admin.kelola-testimoni', compact('testimonials'));
+    }
+
+    public function approveTestimoni($id)
+    {
+        $testimonial = Testimonial::findOrFail($id);
+        $testimonial->update(['is_approved' => true]);
+
+        return redirect()->route('admin.kelola.testimoni')
+            ->with('success', 'Testimoni berhasil disetujui dan akan ditampilkan di landing page.');
+    }
+
+    public function hapusTestimoni($id)
+    {
+        $testimonial = Testimonial::findOrFail($id);
+        $testimonial->delete();
+
+        return redirect()->route('admin.kelola.testimoni')
+            ->with('success', 'Testimoni berhasil dihapus.');
+    }
+
+    public function getTestimoni($id)
+    {
+        $testimonial = Testimonial::findOrFail($id);
+        return response()->json($testimonial);
     }
 }

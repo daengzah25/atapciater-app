@@ -7,6 +7,7 @@ use App\Models\DaftarPaket;
 use App\Models\DetailPesanan;
 use App\Models\Pesanan;
 use App\Models\Libur;
+use App\Models\Testimonial;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +18,30 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        // Ambil data paket untuk ditampilkan di landing page
         $pakets = DaftarPaket::all();
+        $testimonials = Testimonial::where('is_approved', true)
+            ->orderBy('created_at', 'desc')
+            ->limit(6)
+            ->get();
 
-        return view('customer.landing-page', compact('pakets'));
+        return view('customer.landing-page', compact('pakets', 'testimonials'));
     }
+
+    public function storeTestimonial(Request $request)
+    {
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'asal_kota' => 'nullable|string|max:255',
+            'testimoni' => 'required|string|min:10|max:500',
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        Testimonial::create($validated);
+
+        return redirect()->route('landing.page')
+            ->with('success', 'Terima kasih! Testimoni Anda telah dikirim dan menunggu persetujuan admin.');
+    }
+
 
     // Tambahkan method baru untuk halaman daftar paket
     public function paket()
