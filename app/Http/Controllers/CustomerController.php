@@ -19,8 +19,7 @@ class CustomerController extends Controller
     public function index()
     {
         $pakets = DaftarPaket::all();
-        $testimonials = Testimonial::where('is_approved', true)
-            ->orderBy('created_at', 'desc')
+        $testimonials = Testimonial::orderBy('created_at', 'desc')
             ->limit(6)
             ->get();
 
@@ -29,6 +28,7 @@ class CustomerController extends Controller
 
     public function storeTestimonial(Request $request)
     {
+        // Validasi data
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'asal_kota' => 'nullable|string|max:255',
@@ -36,11 +36,26 @@ class CustomerController extends Controller
             'rating' => 'required|integer|min:1|max:5',
         ]);
 
-        Testimonial::create($validated);
+        try {
+            // Simpan testimoni ke database
+            Testimonial::create([
+                'nama' => $validated['nama'],
+                'asal_kota' => $validated['asal_kota'],
+                'testimoni' => $validated['testimoni'],
+                'rating' => $validated['rating']
+            ]);
 
-        return redirect()->route('landing.page')
-            ->with('success', 'Terima kasih! Testimoni Anda telah dikirim dan menunggu persetujuan admin.');
+            return redirect()->route('landing.page')
+                ->with('success', 'Terima kasih! Testimoni Anda telah ditambahkan.');
+        } catch (\Exception $e) {
+            Log::error('Error menyimpan testimoni: ' . $e->getMessage());
+
+            return redirect()->back()
+                ->with('error', 'Terjadi kesalahan saat menyimpan testimoni. Silakan coba lagi.')
+                ->withInput();
+        }
     }
+
 
 
     // Tambahkan method baru untuk halaman daftar paket

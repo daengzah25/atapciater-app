@@ -208,6 +208,7 @@
                 <a href="{{ route('admin.kelola.addons') }}">Kelola Addons</a>
                 <a href="{{ route('admin.kelola.pesanan') }}">Kelola Pesanan</a>
                 <a href="{{ route('admin.kelola.libur') }}">Kelola Libur</a>
+                <a href="{{ route('admin.kelola.testimoni') }}">Kelola Testimoni</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -280,6 +281,13 @@
                 <h3>Kelola Libur</h3>
                 <p>Tambahkan tanggal libur</p>
             </a>
+
+            <a href="{{ route('admin.kelola.testimoni') }}" class="action-card">
+                <div class="action-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Kelola Testimoni</h3>
+                <p>Lihat atau hapus testimoni</p>
         </div>
     </div>
 

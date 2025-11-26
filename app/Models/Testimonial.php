@@ -11,5 +11,12 @@ class Testimonial extends Model
 
     protected $table = 'testimonials';
     protected $primaryKey = 'id_testimonial';
-    protected $fillable = ['nama', 'asal_kota', 'testimoni', 'rating', 'is_approved'];
+    protected $fillable = ['nama', 'asal_kota', 'testimoni', 'rating'];
+
+    /**
+     * The attributes that should be cast.
+     */
+    protected $casts = [
+        'rating' => 'integer',
+    ];
 }

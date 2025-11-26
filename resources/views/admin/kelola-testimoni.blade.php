@@ -130,21 +130,6 @@
             background-color: #c82333;
         }
 
-        .btn-success {
-            background-color: var(--success);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            margin-right: 0.5rem;
-        }
-
-        .btn-success:hover {
-            background-color: #218838;
-        }
-
         .testimoni-table {
             background: var(--white);
             border-radius: 10px;
@@ -173,79 +158,6 @@
 
         tr:hover {
             background: var(--light-bg);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-
-        .modal-content {
-            background-color: var(--white);
-            margin: 5% auto;
-            padding: 2rem;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-light);
-        }
-
-        .modal-title {
-            color: var(--primary-dark);
-            margin: 0;
-        }
-
-        .close {
-            color: #aaa;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
-        .close:hover {
-            color: var(--text);
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--primary);
         }
 
         .alert {
@@ -301,16 +213,6 @@
             }
         }
 
-        .status-approved {
-            color: var(--success);
-            font-weight: bold;
-        }
-
-        .status-pending {
-            color: var(--warning);
-            font-weight: bold;
-        }
-
         .rating-stars {
             color: #ffc107;
         }
@@ -361,44 +263,6 @@
             </div>
         @endif
 
-        <div class="filter-section">
-            <h3 style="margin-bottom: 1rem; color: var(--primary-dark);">Filter Testimoni</h3>
-            <form method="GET" action="{{ route('admin.kelola.testimoni') }}" class="filter-form">
-                <div class="form-group">
-                    <label for="filter_status">Status</label>
-                    <select id="filter_status" name="filter_status">
-                        <option value="">Semua Status</option>
-                        <option value="approved" {{ request('filter_status') == 'approved' ? 'selected' : '' }}>Disetujui</option>
-                        <option value="pending" {{ request('filter_status') == 'pending' ? 'selected' : '' }}>Menunggu</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="filter_rating">Rating</label>
-                    <select id="filter_rating" name="filter_rating">
-                        <option value="">Semua Rating</option>
-                        <option value="5" {{ request('filter_rating') == '5' ? 'selected' : '' }}>5 Bintang</option>
-                        <option value="4" {{ request('filter_rating') == '4' ? 'selected' : '' }}>4 Bintang</option>
-                        <option value="3" {{ request('filter_rating') == '3' ? 'selected' : '' }}>3 Bintang</option>
-                        <option value="2" {{ request('filter_rating') == '2' ? 'selected' : '' }}>2 Bintang</option>
-                        <option value="1" {{ request('filter_rating') == '1' ? 'selected' : '' }}>1 Bintang</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <button type="submit" class="btn-primary" style="width: 100%;">
-                        <i class="fas fa-filter"></i> Filter
-                    </button>
-                </div>
-
-                <div class="form-group">
-                    <a href="{{ route('admin.kelola.testimoni') }}" class="btn-primary" style="display: block; text-align: center; background-color: #6c757d;">
-                        <i class="fas fa-redo"></i> Reset
-                    </a>
-                </div>
-            </form>
-        </div>
-
         <div class="testimoni-table">
             <table>
                 <thead>
@@ -407,7 +271,6 @@
                         <th>Asal Kota</th>
                         <th>Testimoni</th>
                         <th>Rating</th>
-                        <th>Status</th>
                         <th>Tanggal</th>
                         <th>Aksi</th>
                     </tr>
@@ -428,27 +291,8 @@
                                 <span style="margin-left: 0.5rem; color: #666;">({{ $testimonial->rating }})</span>
                             </div>
                         </td>
-                        <td>
-                            @if($testimonial->is_approved)
-                                <span class="status-approved">
-                                    <i class="fas fa-check-circle"></i> Disetujui
-                                </span>
-                            @else
-                                <span class="status-pending">
-                                    <i class="fas fa-clock"></i> Menunggu
-                                </span>
-                            @endif
-                        </td>
                         <td>{{ $testimonial->created_at->format('d/m/Y') }}</td>
                         <td>
-                            @if(!$testimonial->is_approved)
-                            <form action="{{ route('admin.testimoni.approve', $testimonial->id_testimonial) }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="submit" class="btn-success" title="Setujui Testimoni">
-                                    <i class="fas fa-check"></i> Setujui
-                                </button>
-                            </form>
-                            @endif
                             <form action="{{ route('admin.testimoni.hapus', $testimonial->id_testimonial) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
@@ -460,7 +304,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="no-testimoni">
+                        <td colspan="6" class="no-testimoni">
                             <i class="fas fa-comment-slash" style="font-size: 4rem; margin-bottom: 1rem; color: #ccc;"></i>
                             <h3>Belum ada testimoni</h3>
                             <p>Testimoni dari pelanggan akan muncul di sini</p>
@@ -471,12 +315,5 @@
             </table>
         </div>
     </div>
-
-    <script>
-        // Filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add any JavaScript functionality needed
-        });
-    </script>
 </body>
 </html>

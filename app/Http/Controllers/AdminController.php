@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Addons;
 use App\Models\DaftarPaket;
-use App\Models\Libur;
 use App\Models\Pesanan;
+use App\Models\Libur;
 use App\Models\Testimonial;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -59,7 +59,7 @@ class AdminController extends Controller
                 }
 
                 // Generate nama file unik
-                $filename = 'paket_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+                $filename = 'paket_' . time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
                 // Pindahkan file ke directory public
                 $file->move($directory, $filename);
@@ -71,7 +71,7 @@ class AdminController extends Controller
 
             return redirect()->route('admin.kelola.paket')->with('success', 'Paket berhasil ditambahkan!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menyimpan paket: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Gagal menyimpan paket: ' . $e->getMessage());
         }
     }
 
@@ -101,12 +101,12 @@ class AdminController extends Controller
                 }
 
                 // Hapus gambar lama jika ada
-                if ($paket->gambar && file_exists(public_path('images/paket_images/'.$paket->gambar))) {
-                    unlink(public_path('images/paket_images/'.$paket->gambar));
+                if ($paket->gambar && file_exists(public_path('images/paket_images/' . $paket->gambar))) {
+                    unlink(public_path('images/paket_images/' . $paket->gambar));
                 }
 
                 // Generate nama file unik
-                $filename = 'paket_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+                $filename = 'paket_' . time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
                 // Pindahkan file ke directory public
                 $file->move($directory, $filename);
@@ -121,7 +121,7 @@ class AdminController extends Controller
 
             return redirect()->route('admin.kelola.paket')->with('success', 'Paket berhasil diperbarui!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal memperbarui paket: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Gagal memperbarui paket: ' . $e->getMessage());
         }
     }
 
@@ -132,8 +132,8 @@ class AdminController extends Controller
             $paket = DaftarPaket::findOrFail($id);
 
             // Hapus gambar fisik jika ada
-            if ($paket->gambar && file_exists(public_path('images/paket_images/'.$paket->gambar))) {
-                unlink(public_path('images/paket_images/'.$paket->gambar));
+            if ($paket->gambar && file_exists(public_path('images/paket_images/' . $paket->gambar))) {
+                unlink(public_path('images/paket_images/' . $paket->gambar));
             }
 
             // Hapus paket - slot akan otomatis terhapus karena cascade di database
@@ -141,7 +141,7 @@ class AdminController extends Controller
 
             return redirect()->route('admin.kelola.paket')->with('success', 'Paket berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menghapus paket: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Gagal menghapus paket: ' . $e->getMessage());
         }
     }
 
@@ -183,7 +183,7 @@ class AdminController extends Controller
                 }
 
                 // Generate nama file unik
-                $filename = 'addon_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+                $filename = 'addon_' . time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
                 // Pindahkan file ke directory public
                 $file->move($directory, $filename);
@@ -195,7 +195,7 @@ class AdminController extends Controller
 
             return redirect()->route('admin.kelola.addons')->with('success', 'Addon berhasil ditambahkan!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal menyimpan addon: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Gagal menyimpan addon: ' . $e->getMessage());
         }
     }
 
@@ -224,12 +224,12 @@ class AdminController extends Controller
                 }
 
                 // Hapus gambar lama jika ada
-                if ($addon->gambar && file_exists(public_path('images/addons_images/'.$addon->gambar))) {
-                    unlink(public_path('images/addons_images/'.$addon->gambar));
+                if ($addon->gambar && file_exists(public_path('images/addons_images/' . $addon->gambar))) {
+                    unlink(public_path('images/addons_images/' . $addon->gambar));
                 }
 
                 // Generate nama file unik
-                $filename = 'addon_'.time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+                $filename = 'addon_' . time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
                 // Pindahkan file ke directory public
                 $file->move($directory, $filename);
@@ -244,7 +244,7 @@ class AdminController extends Controller
 
             return redirect()->route('admin.kelola.addons')->with('success', 'Addon berhasil diperbarui!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal memperbarui addon: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Gagal memperbarui addon: ' . $e->getMessage());
         }
     }
 
@@ -254,8 +254,8 @@ class AdminController extends Controller
         $addon = Addons::findOrFail($id);
 
         // Hapus gambar fisik jika ada
-        if ($addon->gambar && file_exists(public_path('images/addons_images/'.$addon->gambar))) {
-            unlink(public_path('images/addons_images/'.$addon->gambar));
+        if ($addon->gambar && file_exists(public_path('images/addons_images/' . $addon->gambar))) {
+            unlink(public_path('images/addons_images/' . $addon->gambar));
         }
 
         $addon->delete();
@@ -341,7 +341,7 @@ class AdminController extends Controller
                 'pesanan_id' => $pesanan->id_pesanan,
             ]);
         } catch (\Exception $e) {
-            Log::error('Error sending konfirmasi WhatsApp: '.$e->getMessage());
+            Log::error('Error sending konfirmasi WhatsApp: ' . $e->getMessage());
         }
     }
 
@@ -352,17 +352,17 @@ class AdminController extends Controller
         $tanggalBooking = Carbon::parse($pesanan->tanggal_booking)->translatedFormat('l, d F Y');
 
         $message = "Halo *{$pesanan->nama_pemesan}*,\n\n"
-            ."Pesanan Anda di *ATAP CIATER* telah *DIKONFIRMASI*! 🎉\n\n"
-            ."*DETAIL KONFIRMASI:*\n"
-            ."📋 ID Pesanan: *{$pesanan->id_pesanan}*\n"
-            ."📅 Tanggal Booking: *{$tanggalBooking}*\n"
-            ."📦 Paket: *{$pesanan->nama_paket}*\n"
-            .'💰 Total: Rp '.number_format($pesanan->total, 0, ',', '.')."\n\n"
-            ."Pesanan Anda sudah aktif dan siap untuk digunakan pada tanggal yang telah ditentukan.\n\n"
-            ."Terima kasih telah memilih Atap Ciater! 🙏\n\n"
-            ."Untuk informasi lebih lanjut:\n"
-            ."📞 Customer Service: 0812-3456-7890\n"
-            .'📍 Lokasi: Atap Ciater, Subang';
+            . "Pesanan Anda di *ATAP CIATER* telah *DIKONFIRMASI*! 🎉\n\n"
+            . "*DETAIL KONFIRMASI:*\n"
+            . "📋 ID Pesanan: *{$pesanan->id_pesanan}*\n"
+            . "📅 Tanggal Booking: *{$tanggalBooking}*\n"
+            . "📦 Paket: *{$pesanan->nama_paket}*\n"
+            . '💰 Total: Rp ' . number_format($pesanan->total, 0, ',', '.') . "\n\n"
+            . "Pesanan Anda sudah aktif dan siap untuk digunakan pada tanggal yang telah ditentukan.\n\n"
+            . "Terima kasih telah memilih Atap Ciater! 🙏\n\n"
+            . "Untuk informasi lebih lanjut:\n"
+            . "📞 Customer Service: 0812-3456-7890\n"
+            . '📍 Lokasi: Atap Ciater, Subang';
 
         return $message;
     }
@@ -373,9 +373,9 @@ class AdminController extends Controller
         $phone = preg_replace('/[^0-9]/', '', $phone);
 
         if (substr($phone, 0, 1) === '0') {
-            $phone = '62'.substr($phone, 1);
+            $phone = '62' . substr($phone, 1);
         } elseif (substr($phone, 0, 2) !== '62') {
-            $phone = '62'.$phone;
+            $phone = '62' . $phone;
         }
 
         return $phone;
@@ -407,24 +407,22 @@ class AdminController extends Controller
     {
         $validated = $request->validate([
             'tanggal' => 'required|date|unique:libur,tanggal',
-            'keterangan' => 'nullable|string|max:255',
+            'keterangan' => 'nullable|string|max:255'
         ]);
 
         Libur::create($validated);
-
         return redirect()->route('admin.kelola.libur')->with('success', 'Tanggal libur berhasil ditambahkan.');
     }
 
     public function updateLibur(Request $request, $id)
     {
         $validated = $request->validate([
-            'tanggal' => 'required|date|unique:libur,tanggal,'.$id.',id_libur',
-            'keterangan' => 'nullable|string|max:255',
+            'tanggal' => 'required|date|unique:libur,tanggal,' . $id . ',id_libur',
+            'keterangan' => 'nullable|string|max:255'
         ]);
 
         $libur = Libur::findOrFail($id);
         $libur->update($validated);
-
         return redirect()->route('admin.kelola.libur')->with('success', 'Tanggal libur berhasil diperbarui.');
     }
 
@@ -432,47 +430,19 @@ class AdminController extends Controller
     {
         $libur = Libur::findOrFail($id);
         $libur->delete();
-
         return redirect()->route('admin.kelola.libur')->with('success', 'Tanggal libur berhasil dihapus.');
     }
 
     public function getLibur($id)
     {
         $libur = Libur::findOrFail($id);
-
         return response()->json($libur);
     }
 
-    public function kelolaTestimoni(Request $request)
+    public function kelolaTestimoni()
     {
-        $query = Testimonial::query();
-
-        // Filter berdasarkan status
-        if ($request->has('filter_status') && $request->filter_status != '') {
-            if ($request->filter_status == 'approved') {
-                $query->where('is_approved', true);
-            } elseif ($request->filter_status == 'pending') {
-                $query->where('is_approved', false);
-            }
-        }
-
-        // Filter berdasarkan rating
-        if ($request->has('filter_rating') && $request->filter_rating != '') {
-            $query->where('rating', $request->filter_rating);
-        }
-
-        $testimonials = $query->orderBy('created_at', 'desc')->get();
-
+        $testimonials = Testimonial::orderBy('created_at', 'desc')->get();
         return view('admin.kelola-testimoni', compact('testimonials'));
-    }
-
-    public function approveTestimoni($id)
-    {
-        $testimonial = Testimonial::findOrFail($id);
-        $testimonial->update(['is_approved' => true]);
-
-        return redirect()->route('admin.kelola.testimoni')
-            ->with('success', 'Testimoni berhasil disetujui dan akan ditampilkan di landing page.');
     }
 
     public function hapusTestimoni($id)
@@ -482,12 +452,5 @@ class AdminController extends Controller
 
         return redirect()->route('admin.kelola.testimoni')
             ->with('success', 'Testimoni berhasil dihapus.');
-    }
-
-    public function getTestimoni($id)
-    {
-        $testimonial = Testimonial::findOrFail($id);
-
-        return response()->json($testimonial);
     }
 }

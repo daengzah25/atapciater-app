@@ -1096,6 +1096,7 @@
             </div>
 
             <!-- Form Testimoni -->
+            <!-- Form Testimoni -->
             <div class="testimonial-form-container"
                 style="max-width: 600px; margin: 0 auto; background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1);">
                 <h3 style="text-align: center; color: #2e7d32; margin-bottom: 2rem;">Beri Testimoni Anda</h3>
@@ -1107,13 +1108,33 @@
                     </div>
                 @endif
 
+                @if (session('error'))
+                    <div
+                        style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #f5c6cb;">
+                        <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div
+                        style="background: #f8d7da; color: #721c24; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid #f5c6cb;">
+                        <i class="fas fa-exclamation-triangle"></i> Terdapat kesalahan:
+                        <ul style="margin: 0.5rem 0 0 1rem;">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form action="{{ route('testimonial.store') }}" method="POST" id="testimonialForm">
                     @csrf
+
                     <div style="margin-bottom: 1.5rem;">
                         <label for="nama"
                             style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333;">Nama
                             *</label>
-                        <input type="text" id="nama" name="nama" required
+                        <input type="text" id="nama" name="nama" required value="{{ old('nama') }}"
                             style="width: 100%; padding: 0.875rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;"
                             placeholder="Masukkan nama Anda">
                     </div>
@@ -1122,7 +1143,7 @@
                         <label for="asal_kota"
                             style="display: block; margin-bottom: 0.5rem; font-weight: 500; color: #333;">Asal
                             Kota</label>
-                        <input type="text" id="asal_kota" name="asal_kota"
+                        <input type="text" id="asal_kota" name="asal_kota" value="{{ old('asal_kota') }}"
                             style="width: 100%; padding: 0.875rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;"
                             placeholder="Contoh: Bandung, Jakarta">
                     </div>
@@ -1135,12 +1156,13 @@
                             @for ($i = 1; $i <= 5; $i++)
                                 <label style="cursor: pointer;">
                                     <input type="radio" name="rating" value="{{ $i }}"
-                                        {{ $i == 5 ? 'checked' : '' }} style="display: none;">
+                                        {{ old('rating', 5) == $i ? 'checked' : '' }} style="display: none;">
                                     <i class="fas fa-star rating-star" data-rating="{{ $i }}"
-                                        style="font-size: 2rem; color: #ddd; transition: color 0.3s ease;"></i>
+                                        style="font-size: 2rem; color: {{ $i <= old('rating', 5) ? '#ffc107' : '#ddd' }}; transition: color 0.3s ease;"></i>
                                 </label>
                             @endfor
                         </div>
+                        <input type="hidden" id="selected_rating" value="{{ old('rating', 5) }}">
                     </div>
 
                     <div style="margin-bottom: 1.5rem;">
@@ -1149,7 +1171,7 @@
                             *</label>
                         <textarea id="testimoni" name="testimoni" required rows="5"
                             style="width: 100%; padding: 0.875rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; resize: vertical;"
-                            placeholder="Bagikan pengalaman Anda camping di Atap Ciater..."></textarea>
+                            placeholder="Bagikan pengalaman Anda camping di Atap Ciater...">{{ old('testimoni') }}</textarea>
                         <small style="color: #666; font-size: 0.875rem;">Minimal 10 karakter</small>
                     </div>
 
@@ -1161,6 +1183,7 @@
             </div>
         </div>
     </section>
+
 
 
     <!-- Footer -->
@@ -1304,16 +1327,18 @@
         // Rating stars interaction
         document.addEventListener('DOMContentLoaded', function() {
             const stars = document.querySelectorAll('.rating-star');
-            let selectedRating = 5;
+            const selectedRatingInput = document.getElementById('selected_rating');
+            let selectedRating = parseInt(selectedRatingInput.value);
 
             stars.forEach(star => {
                 star.addEventListener('click', function() {
-                    const rating = this.getAttribute('data-rating');
+                    const rating = parseInt(this.getAttribute('data-rating'));
                     selectedRating = rating;
+                    selectedRatingInput.value = rating;
 
                     // Update stars display
                     stars.forEach(s => {
-                        const starRating = s.getAttribute('data-rating');
+                        const starRating = parseInt(s.getAttribute('data-rating'));
                         if (starRating <= rating) {
                             s.style.color = '#ffc107';
                         } else {
@@ -1321,16 +1346,16 @@
                         }
                     });
 
-                    // Update hidden input
+                    // Update radio buttons
                     document.querySelectorAll('input[name="rating"]').forEach(input => {
-                        input.checked = input.value == rating;
+                        input.checked = parseInt(input.value) === rating;
                     });
                 });
 
                 star.addEventListener('mouseenter', function() {
-                    const rating = this.getAttribute('data-rating');
+                    const rating = parseInt(this.getAttribute('data-rating'));
                     stars.forEach(s => {
-                        const starRating = s.getAttribute('data-rating');
+                        const starRating = parseInt(s.getAttribute('data-rating'));
                         if (starRating <= rating) {
                             s.style.color = '#ffc107';
                         }
@@ -1339,9 +1364,11 @@
 
                 star.addEventListener('mouseleave', function() {
                     stars.forEach(s => {
-                        const starRating = s.getAttribute('data-rating');
+                        const starRating = parseInt(s.getAttribute('data-rating'));
                         if (starRating > selectedRating) {
                             s.style.color = '#ddd';
+                        } else {
+                            s.style.color = '#ffc107';
                         }
                     });
                 });
@@ -1349,12 +1376,17 @@
 
             // Form validation
             document.getElementById('testimonialForm').addEventListener('submit', function(e) {
-                const testimoni = document.getElementById('testimoni').value;
+                const testimoni = document.getElementById('testimoni').value.trim();
                 if (testimoni.length < 10) {
                     e.preventDefault();
                     alert('Testimoni harus minimal 10 karakter.');
                     return false;
                 }
+
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                submitBtn.disabled = true;
             });
         });
     </script>

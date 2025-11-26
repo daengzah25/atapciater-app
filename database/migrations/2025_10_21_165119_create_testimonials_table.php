@@ -14,7 +14,6 @@ return new class extends Migration
             $table->string('asal_kota')->nullable();
             $table->text('testimoni');
             $table->integer('rating')->default(5);
-            $table->boolean('is_approved')->default(false);
             $table->timestamps();
         });
     }

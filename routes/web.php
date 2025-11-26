@@ -111,9 +111,7 @@ Route::post('/testimonial/store', [CustomerController::class, 'storeTestimonial'
 
 // Route untuk testimoni admin
 Route::middleware(['admin'])->group(function () {
-    // ... route admin lainnya
+    // ... route admin lainnya ...
     Route::get('/admin/kelola-testimoni', [AdminController::class, 'kelolaTestimoni'])->name('admin.kelola.testimoni');
-    Route::post('/admin/testimoni/{id}/approve', [AdminController::class, 'approveTestimoni'])->name('admin.testimoni.approve');
     Route::delete('/admin/testimoni/{id}/hapus', [AdminController::class, 'hapusTestimoni'])->name('admin.testimoni.hapus');
-    Route::get('/admin/testimoni/{id}/get', [AdminController::class, 'getTestimoni'])->name('admin.testimoni.get');
 });
