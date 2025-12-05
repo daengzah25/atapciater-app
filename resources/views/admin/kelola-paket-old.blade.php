@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Addons - Atap Ciater</title>
+    <title>Kelola Paket - Atap Ciater</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -32,8 +33,8 @@
 
         .navbar {
             background-color: var(--primary);
-            padding: 0.75rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -47,59 +48,31 @@
 
         .logo {
             color: var(--white);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo img {
-            height: 60px;
-            width: auto;
-            object-fit: contain;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             align-items: center;
         }
 
-        .nav-links a, .nav-links button {
+        .nav-links a,
+        .nav-links button {
             color: var(--white);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease;
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            position: relative;
+            font-size: 1rem;
         }
 
-        .nav-links a:hover, .nav-links button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .nav-links a:before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--white);
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover:before {
-            width: 100%;
+        .nav-links a:hover,
+        .nav-links button:hover {
+            opacity: 0.8;
         }
 
         .container {
@@ -167,25 +140,25 @@
             background-color: #e0a800;
         }
 
-        .addons-grid {
+        .paket-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
         }
 
-        .addon-card {
+        .paket-card {
             background: var(--white);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
-        .addon-card:hover {
+        .paket-card:hover {
             transform: translateY(-5px);
         }
 
-        .addon-image {
+        .paket-image {
             width: 100%;
             height: 200px;
             background: linear-gradient(45deg, var(--primary-light), var(--primary));
@@ -198,37 +171,37 @@
             overflow: hidden;
         }
 
-        .addon-image img {
+        .paket-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .addon-content {
+        .paket-content {
             padding: 1.5rem;
         }
 
-        .addon-title {
+        .paket-title {
             color: var(--primary-dark);
             margin-bottom: 1rem;
             font-size: 1.25rem;
         }
 
-        .addon-price {
+        .paket-price {
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--primary);
             margin-bottom: 1rem;
         }
 
-        .addon-meta {
+        .paket-meta {
             display: flex;
             justify-content: space-between;
             margin-bottom: 1rem;
             color: #666;
         }
 
-        .addon-actions {
+        .paket-actions {
             display: flex;
             gap: 0.5rem;
             margin-top: 1.5rem;
@@ -243,7 +216,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
         }
 
         .modal-content {
@@ -294,7 +267,9 @@
             font-weight: 500;
         }
 
-        input, textarea, select {
+        input,
+        textarea,
+        select {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid var(--border);
@@ -303,7 +278,9 @@
             transition: border-color 0.3s ease;
         }
 
-        input:focus, textarea:focus, select:focus {
+        input:focus,
+        textarea:focus,
+        select:focus {
             outline: none;
             border-color: var(--primary);
         }
@@ -350,110 +327,27 @@
             object-fit: cover;
         }
 
-        .no-addons {
+        .no-paket {
             text-align: center;
             padding: 3rem;
             color: #666;
             grid-column: 1 / -1;
         }
-
-        /* Mobile Navigation Styles */
-        .hamburger-menu {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hamburger-menu.active + .nav-links {
-            display: flex;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hamburger-menu {
-                display: block;
-            }
-
-            .nav-links {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--primary-dark);
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem;
-                display: none !important;
-                z-index: 999;
-                border-top: 2px solid var(--white);
-            }
-
-            .nav-links.active {
-                display: flex !important;
-            }
-
-            .nav-links a,
-            .nav-links form {
-                padding: 0.75rem 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                width: 100%;
-            }
-
-            .nav-links a:last-child,
-            .nav-links form:last-child {
-                border-bottom: none;
-            }
-
-            .nav-links button {
-                text-align: left;
-                padding: 0.75rem 0;
-                width: 100%;
-            }
-
-            .nav-container {
-                flex-wrap: wrap;
-                position: relative;
-            }
-
-            .addons-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-                gap: 1rem;
-            }
-
-            .page-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .btn-primary {
-                width: 100%;
-                justify-content: center;
-            }
-        }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="nav-container">
             <a href="{{ route('admin.dashboard') }}" class="logo">
-                <img src="{{ asset('images/logo/atap_ciater.png') }}" alt="Atap Ciater Logo">
-                <span>Atap Ciater - Admin</span>
+                <i class="fas fa-mountain"></i> Atap Ciater - Admin
             </a>
-            <button class="hamburger-menu" id="hamburgerBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="nav-links" id="navLinks">
+            <div class="nav-links">
                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                 <a href="{{ route('admin.kelola.paket') }}">Kelola Paket</a>
                 <a href="{{ route('admin.kelola.addons') }}">Kelola Addons</a>
                 <a href="{{ route('admin.kelola.pesanan') }}">Kelola Pesanan</a>
                 <a href="{{ route('admin.kelola.libur') }}">Kelola Libur</a>
-                <a href="{{ route('admin.kelola.testimoni') }}">Kelola Testimoni</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -464,50 +358,50 @@
 
     <div class="container">
         <div class="page-header">
-            <h1 class="page-title">Kelola Addons</h1>
-            <button class="btn-primary" id="tambahAddonBtn">
-                <i class="fas fa-plus"></i> Tambah Addon
+            <h1 class="page-title">Kelola Daftar Paket</h1>
+            <button class="btn-primary" id="tambahPaketBtn">
+                <i class="fas fa-plus"></i> Tambah Paket
             </button>
         </div>
 
         @if(session('success'))
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle"></i> {{ session('success') }}
-            </div>
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
         @endif
 
         @if($errors->any())
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-triangle"></i> Terdapat kesalahan dalam input data.
-            </div>
+        <div class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle"></i> Terdapat kesalahan dalam input data.
+        </div>
         @endif
 
-        <div class="addons-grid">
-            @forelse($addons as $addon)
-            <div class="addon-card">
-                <div class="addon-image">
-                    @if($addon->gambar && file_exists(public_path('images/addons_images/' . $addon->gambar)))
-                        <img src="{{ asset('images/addons_images/' . $addon->gambar) }}" alt="{{ $addon->nama_addons }}">
+        <div class="paket-grid">
+            @forelse($pakets as $paket)
+            <div class="paket-card">
+                <div class="paket-image">
+                    @if($paket->gambar && file_exists(public_path('images/paket_images/' . $paket->gambar)))
+                    <img src="{{ asset('images/paket_images/' . $paket->gambar) }}" alt="{{ $paket->nama_paket }}">
                     @else
-                        <i class="fas fa-tools"></i>
+                    <i class="fas fa-campground"></i>
                     @endif
                 </div>
-                <div class="addon-content">
-                    <h3 class="addon-title">{{ $addon->nama_addons }}</h3>
-                    <div class="addon-price">Rp {{ number_format($addon->harga, 0, ',', '.') }}</div>
-                    <div class="addon-meta">
-                        <span><i class="fas fa-box"></i> Stok: {{ $addon->stok }}</span>
-                        <span><i class="fas fa-calendar"></i> {{ $addon->created_at->format('d M Y') }}</span>
+                <div class="paket-content">
+                    <h3 class="paket-title">{{ $paket->nama_paket }}</h3>
+                    <div class="paket-price">Rp {{ number_format($paket->harga, 0, ',', '.') }}</div>
+                    <div class="paket-meta">
+                        <span><i class="fas fa-users"></i> {{ $paket->slot }} slot</span>
+                        <span><i class="fas fa-calendar"></i> {{ $paket->created_at->format('d M Y') }}</span>
                     </div>
-                    <p>{{ Str::limit($addon->deskripsi, 100) }}</p>
-                    <div class="addon-actions">
-                        <button class="btn-edit edit-addon-btn" data-id="{{ $addon->id_addons }}">
+                    <p>{{ Str::limit($paket->deskripsi, 100) }}</p>
+                    <div class="paket-actions">
+                        <button class="btn-edit edit-paket-btn" data-id="{{ $paket->id_paket }}">
                             <i class="fas fa-edit"></i> Edit
                         </button>
-                        <form action="{{ route('admin.addon.hapus', $addon->id_addons) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('admin.paket.hapus', $paket->id_paket) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus addon ini?')">
+                            <button type="submit" class="btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus paket ini?')">
                                 <i class="fas fa-trash"></i> Hapus
                             </button>
                         </form>
@@ -515,58 +409,69 @@
                 </div>
             </div>
             @empty
-            <div class="no-addons">
-                <i class="fas fa-tools" style="font-size: 4rem; margin-bottom: 1rem; color: #ccc;"></i>
-                <h3>Belum ada addons</h3>
-                <p>Tambahkan addons pertama Anda untuk memulai</p>
+            <div class="no-paket">
+                <i class="fas fa-campground" style="font-size: 4rem; margin-bottom: 1rem; color: #ccc;"></i>
+                <h3>Belum ada paket</h3>
+                <p>Tambahkan paket pertama Anda untuk memulai</p>
             </div>
             @endforelse
         </div>
     </div>
 
-    <!-- Modal untuk Tambah/Edit Addon -->
-    <div id="addonModal" class="modal">
+    <!-- Modal untuk Tambah/Edit Paket -->
+    <div id="paketModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">Tambah Addon Baru</h2>
+                <h2 class="modal-title" id="modalTitle">Tambah Paket Baru</h2>
                 <button class="close" id="closeModalBtn">&times;</button>
             </div>
-            <form id="addonForm" method="POST" enctype="multipart/form-data">
+            <form id="paketForm" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" id="editId" name="id_addons">
+                <input type="hidden" id="editId" name="id_paket">
 
                 <div class="form-group">
-                    <label for="nama_addons">Nama Addon *</label>
-                    <input type="text" id="nama_addons" name="nama_addons" required>
+                    <label for="nama_paket">Nama Paket *</label>
+                    <input type="text" id="nama_paket" name="nama_paket" required value="{{ old('nama_paket') }}">
+                    @error('nama_paket') <span style="color: red; font-size: 0.9rem;">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="stok">Stok Tersedia *</label>
-                    <input type="number" id="stok" name="stok" min="0" required>
+                    <label for="slot">Slot Tersedia *</label>
+                    <input type="number" id="slot" name="slot" min="1" required value="{{ old('slot') }}">
+                    @error('slot') <span style="color: red; font-size: 0.9rem;">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="harga">Harga (Rp) *</label>
-                    <input type="number" id="harga" name="harga" min="0" required>
+                    <input type="number" id="harga" name="harga" min="0" required value="{{ old('harga') }}">
+                    @error('harga') <span style="color: red; font-size: 0.9rem;">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi *</label>
-                    <textarea id="deskripsi" name="deskripsi" required></textarea>
+                    <textarea id="deskripsi" name="deskripsi" required>{{ old('deskripsi') }}</textarea>
+                    @error('deskripsi') <span style="color: red; font-size: 0.9rem;">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="gambar">Gambar Addon</label>
+                    <label for="fasilitas">Fasilitas *</label>
+                    <textarea id="fasilitas" name="fasilitas" required>{{ old('fasilitas') }}</textarea>
+                    @error('fasilitas') <span style="color: red; font-size: 0.9rem;">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="gambar">Gambar Paket</label>
                     <input type="file" id="gambar" name="gambar" accept="image/*">
                     <div class="image-preview" id="imagePreview">
                         <span>Pratinjau gambar akan muncul di sini</span>
                     </div>
+                    @error('gambar') <span style="color: red; font-size: 0.9rem;">{{ $message }}</span> @enderror
                     <small>Format: JPG, PNG, JPEG (Maks. 2MB)</small>
                 </div>
 
                 <div class="form-group">
                     <button type="submit" class="btn-primary" style="width: 100%;">
-                        <i class="fas fa-save"></i> Simpan Addon
+                        <i class="fas fa-save"></i> Simpan Paket
                     </button>
                 </div>
             </form>
@@ -574,48 +479,32 @@
     </div>
 
     <script>
-        const modal = document.getElementById('addonModal');
-        const form = document.getElementById('addonForm');
+        const modal = document.getElementById('paketModal');
+        const form = document.getElementById('paketForm');
         const modalTitle = document.getElementById('modalTitle');
         const editId = document.getElementById('editId');
         const imagePreview = document.getElementById('imagePreview');
-        const tambahAddonBtn = document.getElementById('tambahAddonBtn');
+        const tambahPaketBtn = document.getElementById('tambahPaketBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
         const gambarInput = document.getElementById('gambar');
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const navLinks = document.getElementById('navLinks');
 
         // Variabel untuk menyimpan gambar lama saat edit
         let currentImage = null;
 
-        // Mobile Navigation Toggle
-        hamburgerBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            hamburgerBtn.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-                hamburgerBtn.classList.remove('active');
-            });
-        });
-
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Tombol tambah addon
-            tambahAddonBtn.addEventListener('click', openModal);
+            // Tombol tambah paket
+            tambahPaketBtn.addEventListener('click', openModal);
 
             // Tombol close modal
             closeModalBtn.addEventListener('click', closeModal);
 
-            // Tombol edit addon - event delegation
+            // Tombol edit paket - event delegation
             document.addEventListener('click', function(e) {
-                if (e.target.closest('.edit-addon-btn')) {
-                    const button = e.target.closest('.edit-addon-btn');
-                    const idAddon = button.getAttribute('data-id');
-                    editAddon(idAddon);
+                if (e.target.closest('.edit-paket-btn')) {
+                    const button = e.target.closest('.edit-paket-btn');
+                    const idPaket = button.getAttribute('data-id');
+                    editPaket(idPaket);
                 }
             });
 
@@ -659,12 +548,12 @@
             modal.style.display = 'block';
             form.reset();
             editId.value = '';
-            modalTitle.textContent = 'Tambah Addon Baru';
+            modalTitle.textContent = 'Tambah Paket Baru';
             imagePreview.innerHTML = '<span>Pratinjau gambar akan muncul di sini</span>';
             currentImage = null;
 
             // Set form action untuk create
-            form.action = "{{ route('admin.addon.simpan') }}";
+            form.action = "{{ route('admin.paket.simpan') }}";
 
             // Reset file input
             gambarInput.value = '';
@@ -674,34 +563,35 @@
             modal.style.display = 'none';
         }
 
-        function editAddon(id) {
-            fetch(`/admin/addons/${id}/get`)
+        function editPaket(id) {
+            fetch(`/admin/paket/${id}/get`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
-                .then(addon => {
-                    modalTitle.textContent = 'Edit Addon';
-                    editId.value = addon.id_addons;
-                    document.getElementById('nama_addons').value = addon.nama_addons;
-                    document.getElementById('stok').value = addon.stok;
-                    document.getElementById('harga').value = addon.harga;
-                    document.getElementById('deskripsi').value = addon.deskripsi;
+                .then(paket => {
+                    modalTitle.textContent = 'Edit Paket';
+                    editId.value = paket.id_paket;
+                    document.getElementById('nama_paket').value = paket.nama_paket;
+                    document.getElementById('slot').value = paket.slot;
+                    document.getElementById('harga').value = paket.harga;
+                    document.getElementById('deskripsi').value = paket.deskripsi;
+                    document.getElementById('fasilitas').value = paket.fasilitas;
 
                     // Handle image preview
-                    if (addon.gambar) {
-                        const imageUrl = `/images/addons_images/${addon.gambar}`;
-                        imagePreview.innerHTML = `<img src="${imageUrl}" alt="${addon.nama_addons}">`;
-                        currentImage = addon.gambar;
+                    if (paket.gambar) {
+                        const imageUrl = `/storage/paket_images/${paket.gambar}`;
+                        imagePreview.innerHTML = `<img src="${imageUrl}" alt="${paket.nama_paket}">`;
+                        currentImage = paket.gambar;
                     } else {
                         imagePreview.innerHTML = '<span>Pratinjau gambar akan muncul di sini</span>';
                         currentImage = null;
                     }
 
                     // Set form action untuk update
-                    form.action = `/admin/addons/${id}/update`;
+                    form.action = `/admin/paket/${id}/update`;
                     modal.style.display = 'block';
 
                     // Reset file input
@@ -709,7 +599,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Terjadi kesalahan saat mengambil data addon');
+                    alert('Terjadi kesalahan saat mengambil data paket');
                 });
         }
 
@@ -733,7 +623,7 @@
             } else {
                 // Jika tidak ada file baru, tampilkan gambar lama (saat edit)
                 if (currentImage) {
-                    const imageUrl = `/images/addons_images/${currentImage}`;
+                    const imageUrl = `/storage/paket_images/${currentImage}`;
                     imagePreview.innerHTML = `<img src="${imageUrl}" alt="Current Image">`;
                 } else {
                     imagePreview.innerHTML = '<span>Pratinjau gambar akan muncul di sini</span>';
@@ -742,4 +632,5 @@
         }
     </script>
 </body>
+
 </html>

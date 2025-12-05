@@ -34,7 +34,7 @@
 
         .navbar {
             background-color: var(--primary);
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
@@ -49,34 +49,59 @@
 
         .logo {
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.25rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
         .nav-links a, .nav-links button {
             color: var(--white);
             text-decoration: none;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            position: relative;
         }
 
         .nav-links a:hover, .nav-links button:hover {
-            opacity: 0.85;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
-        .nav-links a.current {
-            font-weight: 700;
-            text-decoration: underline;
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--white);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:before {
+            width: 100%;
         }
 
         .container {
@@ -157,9 +182,10 @@
         }
 
         th, td {
-            padding: 1rem;
+            padding: 0.75rem;
             text-align: left;
             border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
         }
 
         th {
@@ -168,10 +194,77 @@
             font-weight: 600;
             position: sticky;
             top: 0;
+            padding: 0.6rem;
+            font-size: 0.85rem;
         }
 
         tr:hover {
             background: var(--light-bg);
+        }
+
+        /* Mobile-First Responsive Table */
+        @media (max-width: 1024px) {
+            .libur-table {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 700px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+                width: 100%;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 0.5rem;
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                overflow: hidden;
+                background: var(--white);
+            }
+
+            tr:hover {
+                background: var(--white);
+            }
+
+            td {
+                padding: 0.4rem;
+                position: relative;
+                border: none;
+                border-bottom: 1px solid #f0f0f0;
+                font-size: 0.8rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            td:last-child {
+                border-bottom: none;
+            }
+
+            td:before {
+                content: attr(data-label);
+                font-weight: 600;
+                background: none;
+                color: #333;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+                min-width: 0;
+            }
         }
 
         .modal {
@@ -286,7 +379,67 @@
             align-items: end;
         }
 
+        /* Mobile Navigation Styles */
+        .hamburger-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger-menu.active + .nav-links {
+            display: flex;
+        }
+
         @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-dark);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem;
+                display: none !important;
+                z-index: 999;
+                border-top: 2px solid var(--white);
+            }
+
+            .nav-links.active {
+                display: flex !important;
+            }
+
+            .nav-links a,
+            .nav-links form {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+            }
+
+            .nav-links a:last-child,
+            .nav-links form:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links button {
+                text-align: left;
+                padding: 0.75rem 0;
+                width: 100%;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                position: relative;
+            }
+
             .container {
                 overflow-x: auto;
             }
@@ -298,6 +451,17 @@
             .filter-form {
                 grid-template-columns: 1fr;
             }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -305,14 +469,19 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="{{ route('admin.dashboard') }}" class="logo">
-                <i class="fas fa-mountain"></i> Atap Ciater - Admin
+                <img src="{{ asset('images/logo/atap_ciater.png') }}" alt="Atap Ciater Logo">
+                <span>Atap Ciater - Admin</span>
             </a>
-            <div class="nav-links">
+            <button class="hamburger-menu" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                 <a href="{{ route('admin.kelola.paket') }}">Kelola Paket</a>
                 <a href="{{ route('admin.kelola.addons') }}">Kelola Addons</a>
                 <a href="{{ route('admin.kelola.pesanan') }}">Kelola Pesanan</a>
-                <a href="{{ route('admin.kelola.libur') }}" class="current">Kelola Libur</a>
+                <a href="{{ route('admin.kelola.libur') }}">Kelola Libur</a>
+                <a href="{{ route('admin.kelola.testimoni') }}">Kelola Testimoni</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -407,11 +576,11 @@
                 <tbody>
                     @forelse($liburs as $libur)
                     <tr>
-                        <td>{{ $libur->id_libur }}</td>
-                        <td>{{ \Carbon\Carbon::parse($libur->tanggal)->translatedFormat('d F Y') }}</td>
-                        <td>{{ $libur->keterangan ?? '-' }}</td>
-                        <td>{{ $libur->updated_at->diffForHumans() }}</td>
-                        <td>
+                        <td data-label="ID Libur">{{ $libur->id_libur }}</td>
+                        <td data-label="Tanggal">{{ \Carbon\Carbon::parse($libur->tanggal)->translatedFormat('d F Y') }}</td>
+                        <td data-label="Keterangan">{{ $libur->keterangan ?? '-' }}</td>
+                        <td data-label="Diperbarui">{{ $libur->updated_at->diffForHumans() }}</td>
+                        <td data-label="Aksi">
                             <button class="btn-edit edit-libur-btn" data-id="{{ $libur->id_libur }}">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
@@ -475,6 +644,22 @@
         const editId = document.getElementById('editId');
         const tambahLiburBtn = document.getElementById('tambahLiburBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        // Mobile Navigation Toggle
+        hamburgerBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            hamburgerBtn.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+            });
+        });
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {

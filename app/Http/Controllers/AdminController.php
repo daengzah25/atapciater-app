@@ -7,9 +7,9 @@ use App\Models\DaftarPaket;
 use App\Models\Pesanan;
 use App\Models\Libur;
 use App\Models\Testimonial;
+use App\Services\WhatsAppService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
@@ -303,82 +303,16 @@ class AdminController extends Controller
         $oldStatus = $pesanan->status;
         $pesanan->update($validated);
 
-        // Kirim notifikasi WhatsApp jika status berubah menjadi dikonfirmasi
-        if ($validated['status'] == 'dikonfirmasi' && $oldStatus != 'dikonfirmasi') {
-            $this->sendKonfirmasiWhatsApp($pesanan);
+        // Kirim notifikasi WhatsApp jika status berubah
+        $whatsAppService = new WhatsAppService();
+
+        if ($validated['status'] === 'dikonfirmasi' && $oldStatus !== 'dikonfirmasi') {
+            $whatsAppService->sendConfirmationNotification($pesanan);
+        } elseif ($validated['status'] === 'dibatalkan' && $oldStatus !== 'dibatalkan') {
+            $whatsAppService->sendCancellationNotification($pesanan, 'Pesanan dibatalkan oleh admin.');
         }
 
         return redirect()->route('admin.kelola.pesanan')->with('success', 'Status pesanan berhasil diperbarui!');
-    }
-
-    // Kirim notifikasi konfirmasi via WhatsApp
-    private function sendKonfirmasiWhatsApp($pesanan)
-    {
-        try {
-            $apiToken = env('FONNTE_API_TOKEN');
-
-            if (! $apiToken || $apiToken === 'your_fonnte_api_token_here') {
-                Log::error('Fonnte API token tidak dikonfigurasi');
-
-                return;
-            }
-
-            $phone = $this->formatPhoneNumber($pesanan->no_wa);
-            $message = $this->formatKonfirmasiMessage($pesanan);
-
-            $response = Http::withHeaders([
-                'Authorization' => $apiToken,
-            ])->asForm()->post('https://api.fonnte.com/send', [
-                'target' => $phone,
-                'message' => $message,
-                'delay' => '2',
-                'countryCode' => '62',
-            ]);
-
-            Log::info('WhatsApp Konfirmasi Response: ', [
-                'status' => $response->status(),
-                'body' => $response->body(),
-                'pesanan_id' => $pesanan->id_pesanan,
-            ]);
-        } catch (\Exception $e) {
-            Log::error('Error sending konfirmasi WhatsApp: ' . $e->getMessage());
-        }
-    }
-
-    // Format pesan konfirmasi
-    private function formatKonfirmasiMessage($pesanan)
-    {
-        Carbon::setLocale('id');
-        $tanggalBooking = Carbon::parse($pesanan->tanggal_booking)->translatedFormat('l, d F Y');
-
-        $message = "Halo *{$pesanan->nama_pemesan}*,\n\n"
-            . "Pesanan Anda di *ATAP CIATER* telah *DIKONFIRMASI*! 🎉\n\n"
-            . "*DETAIL KONFIRMASI:*\n"
-            . "📋 ID Pesanan: *{$pesanan->id_pesanan}*\n"
-            . "📅 Tanggal Booking: *{$tanggalBooking}*\n"
-            . "📦 Paket: *{$pesanan->nama_paket}*\n"
-            . '💰 Total: Rp ' . number_format($pesanan->total, 0, ',', '.') . "\n\n"
-            . "Pesanan Anda sudah aktif dan siap untuk digunakan pada tanggal yang telah ditentukan.\n\n"
-            . "Terima kasih telah memilih Atap Ciater! 🙏\n\n"
-            . "Untuk informasi lebih lanjut:\n"
-            . "📞 Customer Service: 0812-3456-7890\n"
-            . '📍 Lokasi: Atap Ciater, Subang';
-
-        return $message;
-    }
-
-    // Format nomor telepon
-    private function formatPhoneNumber($phone)
-    {
-        $phone = preg_replace('/[^0-9]/', '', $phone);
-
-        if (substr($phone, 0, 1) === '0') {
-            $phone = '62' . substr($phone, 1);
-        } elseif (substr($phone, 0, 2) !== '62') {
-            $phone = '62' . $phone;
-        }
-
-        return $phone;
     }
 
     /**

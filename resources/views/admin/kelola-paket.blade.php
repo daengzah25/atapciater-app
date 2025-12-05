@@ -33,7 +33,7 @@
 
         .navbar {
             background-color: var(--primary);
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -48,14 +48,23 @@
 
         .logo {
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
         }
 
@@ -63,16 +72,37 @@
         .nav-links button {
             color: var(--white);
             text-decoration: none;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            position: relative;
         }
 
         .nav-links a:hover,
         .nav-links button:hover {
-            opacity: 0.8;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--white);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover:before {
+            width: 100%;
         }
 
         .container {
@@ -333,6 +363,85 @@
             color: #666;
             grid-column: 1 / -1;
         }
+
+        /* Mobile Navigation Styles */
+        .hamburger-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger-menu.active + .nav-links {
+            display: flex;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-dark);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem;
+                display: none !important;
+                z-index: 999;
+                border-top: 2px solid var(--white);
+            }
+
+            .nav-links.active {
+                display: flex !important;
+            }
+
+            .nav-links a,
+            .nav-links form {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
+            }
+
+            .nav-links a:last-child,
+            .nav-links form:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links button {
+                text-align: left;
+                padding: 0.75rem 0;
+                width: 100%;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                position: relative;
+            }
+
+            .paket-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1rem;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 
@@ -340,14 +449,19 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="{{ route('admin.dashboard') }}" class="logo">
-                <i class="fas fa-mountain"></i> Atap Ciater - Admin
+                <img src="{{ asset('images/logo/atap_ciater.png') }}" alt="Atap Ciater Logo">
+                <span>Atap Ciater - Admin</span>
             </a>
-            <div class="nav-links">
+            <button class="hamburger-menu" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links" id="navLinks">
                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                 <a href="{{ route('admin.kelola.paket') }}">Kelola Paket</a>
                 <a href="{{ route('admin.kelola.addons') }}">Kelola Addons</a>
                 <a href="{{ route('admin.kelola.pesanan') }}">Kelola Pesanan</a>
                 <a href="{{ route('admin.kelola.libur') }}">Kelola Libur</a>
+                <a href="{{ route('admin.kelola.testimoni') }}">Kelola Testimoni</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -487,9 +601,25 @@
         const tambahPaketBtn = document.getElementById('tambahPaketBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
         const gambarInput = document.getElementById('gambar');
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
 
         // Variabel untuk menyimpan gambar lama saat edit
         let currentImage = null;
+
+        // Mobile Navigation Toggle
+        hamburgerBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            hamburgerBtn.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+            });
+        });
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {

@@ -15,4 +15,15 @@ class PICController extends Controller
 
         return view('pic.dashboard', compact('pesanan'));
     }
+
+    public function getDetailPesanan($id)
+    {
+        $pesanan = Pesanan::with('detailPesanan')->find($id);
+
+        if (!$pesanan) {
+            return response()->json(['error' => 'Pesanan tidak ditemukan'], 404);
+        }
+
+        return response()->json($pesanan);
+    }
 }

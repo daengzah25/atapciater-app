@@ -59,6 +59,7 @@ Route::middleware(['admin'])->group(function () {
 // PIC Routes
 Route::middleware(['pic'])->group(function () {
     Route::get('/pic/dashboard', [PICController::class, 'dashboard'])->name('pic.dashboard');
+    Route::get('/pic/pesanan/{id}/detail', [PICController::class, 'getDetailPesanan'])->name('pic.pesanan.detail');
     // Route PIC lainnya akan ditambahkan di sini
 });
 

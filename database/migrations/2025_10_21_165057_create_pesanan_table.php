@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('no_wa');
             $table->string('screenshot')->nullable();
             $table->enum('status', ['menunggu_konfirmasi', 'dikonfirmasi', 'dibatalkan', 'selesai'])->default('menunggu_konfirmasi');
-            $table->enum('metode_bayar', ['dp_50%', 'lunas']);
+            $table->enum('metode_bayar', ['dp_50%', 'lunas', 'full_cash_on_site']);
             $table->string('nama_paket');
             $table->integer('harga_paket');
             $table->timestamps();
