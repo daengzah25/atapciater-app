@@ -630,94 +630,204 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
             .container {
-                padding: 0 1rem;
+                padding: 0 0.875rem;
             }
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.35rem;
+                margin-bottom: 0.75rem;
             }
 
             h2 {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
             }
 
             h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
             }
 
             p {
-                font-size: 0.9rem;
+                font-size: 0.875rem;
+                margin-bottom: 0.75rem;
             }
 
             .btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.9rem;
+                padding: 0.65rem 1.5rem;
+                font-size: 0.85rem;
+                width: 100%;
+            }
+
+            .hero-section {
+                padding: 3rem 0 2rem;
+                min-height: auto;
+            }
+
+            .hero-title {
+                font-size: 1.4rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .search-container {
+                margin-bottom: 1.5rem;
+            }
+
+            .search-input {
+                padding: 0.65rem;
+                font-size: 0.85rem;
+                border-radius: 6px;
+            }
+
+            .search-input::placeholder {
+                font-size: 0.8rem;
+            }
+
+            .filter-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .filter-group label {
+                font-size: 0.85rem;
+            }
+
+            .filter-group input,
+            .filter-group select {
+                padding: 0.6rem;
+                font-size: 0.85rem;
             }
 
             .packages-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 0.875rem;
             }
 
             .package-card {
                 border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             }
 
             .package-image {
-                height: 180px;
+                height: 150px;
+                border-radius: 0;
             }
 
             .package-header {
-                padding: 1rem 1rem 0;
+                padding: 0.75rem;
             }
 
             .package-body {
-                padding: 1rem;
+                padding: 0.75rem;
             }
 
             .package-name {
-                font-size: 1.1rem;
-                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+                font-weight: 600;
             }
 
             .package-price {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+                font-weight: 700;
             }
 
-            .package-features ul li {
-                font-size: 0.85rem;
-                padding: 0.3rem 0;
+            .slot-info {
+                font-size: 0.75rem;
+                margin-bottom: 0.5rem;
             }
 
-            .package-features i {
-                font-size: 0.9rem;
-                margin-right: 0.5rem;
+            .slot-badge {
+                padding: 0.35rem 0.65rem;
+                font-size: 0.7rem;
+                border-radius: 4px;
             }
 
-            .cta-section {
-                padding: 1.5rem 1rem;
-            }
-
-            .cta-section h2 {
-                font-size: 1.5rem;
+            .package-features {
                 margin-bottom: 0.75rem;
             }
 
-            .cta-section p {
-                font-size: 0.9rem;
-                margin-bottom: 1rem;
+            .package-features ul li {
+                font-size: 0.8rem;
+                padding: 0.25rem 0;
+                margin-bottom: 0.2rem;
+            }
+
+            .package-features i {
+                font-size: 0.85rem;
+                margin-right: 0.4rem;
+                width: 14px;
             }
 
             .btn-group {
                 flex-direction: column;
                 gap: 0.5rem;
+                margin-top: 0.75rem;
+            }
+
+            .package-card .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+                width: 100%;
+            }
+
+            .cta-section {
+                padding: 1.5rem 1rem;
+                margin: 2rem 0;
+                border-radius: 8px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .cta-section p {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+                line-height: 1.5;
+            }
+
+            .main-content {
+                margin-top: 70px;
+                padding: 1.5rem 0;
+                min-height: calc(100vh - 100px);
+            }
+
+            .header {
+                padding: 0.75rem 0;
+            }
+
+            .brand {
+                font-size: 1.15rem;
+                gap: 0.5rem;
+            }
+
+            .brand-logo {
+                height: 38px;
+            }
+
+            .nav-toggle {
+                font-size: 1.3rem;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1.25rem;
+                margin-bottom: 1.5rem;
             }
 
             .footer-section {
@@ -725,66 +835,134 @@
             }
 
             .footer-section h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.625rem;
+            }
+
+            .footer-section p {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-links li {
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            .contact-info li {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .social-links {
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
             }
 
             .map-container iframe {
                 height: 200px;
+                border-radius: 6px;
             }
 
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .hero-title {
-                font-size: 1.5rem;
-            }
-
-            .status-badge {
-                padding: 0.4rem 0.75rem;
-                font-size: 0.7rem;
+            .footer-bottom {
+                padding-top: 1.25rem;
+                font-size: 0.75rem;
             }
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 641px) and (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .package-image {
+                height: 180px;
+            }
+
+            .package-name {
+                font-size: 1rem;
+            }
+
+            .package-price {
+                font-size: 1.25rem;
+            }
+
             .btn {
-                width: auto;
                 max-width: none;
+                padding: 0.75rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 0.95rem;
             }
 
             .btn-group {
                 flex-direction: row;
                 justify-content: center;
+                gap: 1rem;
             }
 
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .map-container iframe {
+                height: 250px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
             .packages-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
 
             .footer-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-
-            .map-container iframe {
-                height: 300px;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-title {
-                font-size: 2.25rem;
-            }
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 1025px) {
             .packages-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
             }
 
             .footer-grid {
                 grid-template-columns: repeat(4, 1fr);
+            }
+
+            .btn {
+                width: auto;
+                max-width: none;
             }
         }
 

@@ -636,68 +636,91 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
             .container {
-                padding: 0 1rem;
+                padding: 0 0.875rem;
             }
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.35rem;
+                margin-bottom: 0.75rem;
             }
 
             h2 {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
             }
 
             h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
             }
 
             .btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.9rem;
+                padding: 0.65rem 1.5rem;
+                font-size: 0.85rem;
+                width: 100%;
+            }
+
+            .main-content {
+                margin-top: 70px;
+                padding: 1rem 0;
+                min-height: calc(100vh - 200px);
             }
 
             .form-container {
-                padding: 0 1rem;
+                padding: 0 0;
+                max-width: 100%;
             }
 
             .form-card {
                 padding: 1rem;
                 border-radius: 8px;
+                margin-bottom: 1rem;
             }
 
             .form-title {
-                font-size: 1.25rem;
-                margin-bottom: 1rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
+                font-weight: 600;
             }
 
             .form-group {
-                margin-bottom: 1rem;
+                margin-bottom: 0.9rem;
             }
 
             label {
-                font-size: 0.9rem;
-                margin-bottom: 0.4rem;
+                font-size: 0.85rem;
+                margin-bottom: 0.35rem;
+                font-weight: 600;
             }
 
             input, select, textarea {
-                padding: 0.75rem;
-                font-size: 0.9rem;
+                padding: 0.65rem;
+                font-size: 0.85rem;
+                border-radius: 6px;
             }
 
             small {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+                margin-top: 0.3rem;
             }
 
             .alert {
                 padding: 0.75rem;
                 margin-bottom: 1rem;
+                border-radius: 6px;
+                font-size: 0.85rem;
             }
 
             .alert i {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 margin-right: 0.5rem;
+            }
+
+            .alert h4 {
+                font-size: 0.9rem;
+                margin-bottom: 0.35rem;
             }
 
             .ticket-result {
@@ -706,85 +729,237 @@
 
             .ticket-card {
                 padding: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             }
 
             .ticket-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.75rem;
-                margin-bottom: 1rem;
+                margin-bottom: 0.75rem;
+                padding-bottom: 0.75rem;
             }
 
             .ticket-id {
-                font-size: 1.1rem;
+                font-size: 0.95rem;
+                font-weight: 600;
             }
 
             .ticket-status {
                 width: 100%;
             }
 
+            .status-badge {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.75rem;
+                border-radius: 4px;
+                display: inline-block;
+            }
+
             .ticket-details {
                 grid-template-columns: 1fr;
-                gap: 0.5rem;
+                gap: 0;
+                margin-bottom: 0.75rem;
             }
 
             .detail-item {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: flex-start;
-                font-size: 0.85rem;
-                padding: 0.75rem;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                padding: 0.65rem 0;
+                border-bottom: 1px solid #eee;
             }
 
             .detail-label {
                 font-weight: 500;
-                margin-bottom: 0.25rem;
                 font-size: 0.8rem;
             }
 
             .detail-value {
                 font-weight: 600;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                text-align: right;
             }
 
-            .addon-list {
-                margin-top: 1rem;
+            .addon-section {
+                margin-top: 0.75rem;
+                padding-top: 0.75rem;
+                border-top: 1px solid #eee;
+            }
+
+            .addon-section h4 {
+                font-size: 0.85rem;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
             }
 
             .addon-item {
-                font-size: 0.85rem;
-                padding: 0.5rem 0.75rem;
-                margin-bottom: 0.5rem;
+                font-size: 0.8rem;
+                padding: 0.4rem 0;
+                margin-bottom: 0.3rem;
             }
 
             .btn-group {
                 flex-direction: column;
                 gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .btn-group .btn {
+                width: 100%;
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            .header {
+                padding: 0.75rem 0;
+            }
+
+            .brand {
+                font-size: 1.15rem;
+                gap: 0.5rem;
+            }
+
+            .brand-logo {
+                height: 38px;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .footer-section {
-                margin-bottom: 0.5rem;
+                gap: 1.25rem;
+                margin-bottom: 1.5rem;
             }
 
             .footer-section h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.625rem;
+            }
+
+            .footer-section p {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            .contact-info li {
+                font-size: 0.8rem;
+            }
+
+            .social-links {
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
             }
 
             .map-container iframe {
                 height: 200px;
+                border-radius: 6px;
             }
 
-            .status-badge {
-                padding: 0.4rem 0.75rem;
-                font-size: 0.7rem;
+            .footer-bottom {
+                padding-top: 1.25rem;
+                font-size: 0.75rem;
             }
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 641px) and (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+            }
+
+            .form-card {
+                padding: 1.5rem;
+            }
+
+            .form-title {
+                font-size: 1.2rem;
+            }
+
+            label {
+                font-size: 0.9rem;
+            }
+
+            input, select, textarea {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .ticket-card {
+                padding: 1.5rem;
+            }
+
+            .detail-item {
+                font-size: 0.9rem;
+                padding: 0.75rem 0;
+            }
+
+            .detail-label {
+                font-size: 0.85rem;
+            }
+
+            .detail-value {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                max-width: none;
+                padding: 0.75rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .btn-group {
+                flex-direction: row;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .map-container iframe {
+                height: 250px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .form-container {
+                max-width: 600px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .form-container {
+                max-width: 650px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
             .btn {
                 width: auto;
                 max-width: none;
@@ -793,28 +968,6 @@
             .btn-group {
                 flex-direction: row;
                 justify-content: center;
-            }
-
-            .form-card {
-                padding: 2rem;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .map-container iframe {
-                height: 300px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .form-container {
-                max-width: 550px;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(4, 1fr);
             }
         }
 

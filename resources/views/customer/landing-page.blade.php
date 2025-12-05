@@ -950,50 +950,336 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 0.875rem;
+            }
+
+            .hero-section {
+                padding: 5rem 0 4rem;
+                min-height: auto;
+            }
+
             .hero-title {
-                font-size: 2.25rem;
+                font-size: 1.5rem;
+                line-height: 1.3;
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.5;
+            }
+
+            .section {
+                padding: 2.5rem 0;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.25rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 0.875rem;
+            }
+
+            .feature-card {
+                padding: 1rem;
+                margin: 0;
+                border-radius: 8px;
+            }
+
+            .feature-card i {
+                font-size: 1.75rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .feature-card h3 {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .feature-card p {
+                font-size: 0.8rem;
+            }
+
+            .package-grid {
+                grid-template-columns: 1fr;
+                gap: 0.875rem;
+            }
+
+            .package-card {
+                padding: 1rem;
+                margin: 0;
+                border-radius: 8px;
+            }
+
+            .package-card h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .package-price {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .package-card p {
+                font-size: 0.8rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .package-card ul li {
+                font-size: 0.75rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .package-card .slot-badge {
+                font-size: 0.75rem;
+                padding: 0.35rem 0.75rem;
+                margin-top: 0.5rem;
             }
 
             .btn-group {
                 flex-direction: column;
                 align-items: center;
+                gap: 0.75rem;
+                margin-top: 1rem;
             }
 
             .btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 100%;
+                padding: 0.65rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+            }
+
+            .gallery-item {
+                border-radius: 6px;
+                height: 140px;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 0.875rem;
+            }
+
+            .testimonial-card {
+                padding: 1rem;
+                border-radius: 8px;
+            }
+
+            .testimonial-text {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+                line-height: 1.5;
+            }
+
+            .testimonial-author {
+                font-size: 0.85rem;
+                font-weight: 600;
+            }
+
+            .testimonial-city {
+                font-size: 0.75rem;
+            }
+
+            .rating-display {
+                font-size: 0.75rem;
             }
 
             .testimonial-form-container {
-                padding: 2rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.75rem;
+                padding: 1rem;
+                border-radius: 8px;
             }
 
-            .section {
-                padding: 3rem 0;
+            .form-group {
+                margin-bottom: 0.75rem;
             }
 
-            .feature-card,
-            .package-card {
-                margin: 0 0.5rem;
+            .form-group label {
+                font-size: 0.85rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+                border-radius: 6px;
+            }
+
+            .rating-input {
+                gap: 0.4rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .star {
+                font-size: 1.25rem;
+            }
+
+            .contact-info {
+                margin-bottom: 1.5rem;
+            }
+
+            .contact-info li {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+                gap: 0.75rem;
+            }
+
+            .contact-info i {
+                font-size: 1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-section h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.625rem;
+            }
+
+            .footer-section p {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-links li {
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            .social-links {
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
+            }
+
+            .map-container iframe {
+                height: 200px;
+                border-radius: 6px;
+            }
+
+            .footer-bottom {
+                padding-top: 1.25rem;
+                font-size: 0.75rem;
             }
 
             .brand {
-                font-size: 1.2rem;
+                font-size: 1.15rem;
+                gap: 0.5rem;
             }
 
             .brand-logo {
-                height: 35px;
+                height: 38px;
+            }
+
+            .header {
+                padding: 0.75rem 0;
+            }
+
+            .side-nav {
+                width: 280px;
+            }
+
+            .nav-item {
+                margin-bottom: 0.3rem;
+            }
+
+            .nav-link {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .package-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.875rem;
+            }
+
+            .gallery-item {
+                height: 160px;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .btn {
+                max-width: none;
+                padding: 0.75rem 2rem;
+            }
+
+            .btn-group {
+                flex-direction: row;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .testimonial-form-container {
+                padding: 1.75rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .map-container iframe {
+                height: 250px;
             }
         }
 

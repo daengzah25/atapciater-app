@@ -913,120 +913,161 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
+            :root {
+                --base-font: 14px;
+            }
+
             .container {
-                padding: 0 1rem;
+                padding: 0 0.875rem;
             }
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.35rem;
+                margin-bottom: 0.75rem;
             }
 
             h2 {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
             }
 
             h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+            }
+
+            p {
+                font-size: 0.875rem;
+                margin-bottom: 0.75rem;
             }
 
             .btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.9rem;
+                padding: 0.65rem 1.5rem;
+                font-size: 0.85rem;
+                width: 100%;
             }
 
             .booking-container {
-                padding: 0 1rem;
+                padding: 0;
+                margin: 0 auto;
             }
 
             .booking-card {
                 padding: 1rem;
                 border-radius: 8px;
+                margin-bottom: 1rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             }
 
             .section-title {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.75rem;
+                padding-bottom: 0.5rem;
             }
 
             .paket-info {
-                padding: 1rem;
-                margin-bottom: 1rem;
+                padding: 0.875rem;
+                margin-bottom: 0.875rem;
+                border-radius: 8px;
             }
 
             .paket-name {
-                font-size: 1rem;
-            }
-
-            .paket-price {
-                font-size: 1.3rem;
-            }
-
-            .form-group {
-                margin-bottom: 1rem;
-            }
-
-            label {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
                 margin-bottom: 0.4rem;
             }
 
+            .paket-price {
+                font-size: 1.15rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .slot-info {
+                font-size: 0.85rem;
+            }
+
+            .form-group {
+                margin-bottom: 0.9rem;
+            }
+
+            label {
+                font-size: 0.85rem;
+                margin-bottom: 0.35rem;
+                font-weight: 600;
+            }
+
             input, select, textarea {
-                padding: 0.75rem;
-                font-size: 0.9rem;
+                padding: 0.65rem;
+                font-size: 0.85rem;
+                border-radius: 6px;
             }
 
             small {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+                margin-top: 0.3rem;
             }
 
             .addon-item {
                 padding: 0.75rem;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.625rem;
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 0.75rem;
+                border-radius: 6px;
             }
 
             .addon-info {
                 width: 100%;
-                margin-bottom: 0.75rem;
             }
 
             .addon-name {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                margin-bottom: 0.2rem;
             }
 
             .addon-price {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+            }
+
+            .addon-stock {
+                font-size: 0.75rem;
+                margin-top: 0.15rem;
             }
 
             .quantity-controls {
                 width: 100%;
                 justify-content: flex-end;
+                gap: 0.35rem;
             }
 
             .qty-btn {
                 width: 28px;
                 height: 28px;
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+                padding: 0;
+                border-radius: 4px;
             }
 
             .qty-input {
                 width: 45px;
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+                padding: 0.4rem !important;
             }
 
             .payment-methods {
                 grid-template-columns: 1fr;
-                gap: 0.75rem;
+                gap: 0.65rem;
+                margin-bottom: 1rem;
             }
 
             .payment-option {
                 padding: 0.75rem;
+                border-radius: 6px;
             }
 
             .payment-option strong {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                margin-bottom: 0.25rem;
             }
 
             .payment-option small {
@@ -1036,93 +1077,236 @@
             .bank-card {
                 padding: 0.75rem;
                 margin-bottom: 0.75rem;
+                border-radius: 6px;
             }
 
             .bank-header {
                 gap: 0.5rem;
-                margin-bottom: 0.75rem;
+                margin-bottom: 0.625rem;
             }
 
             .bank-header i {
-                font-size: 1.2rem;
+                font-size: 1.15rem;
             }
 
             .bank-name {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
 
             .bank-item {
                 padding: 0.5rem;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 0.5rem;
+                gap: 0.35rem;
+                border-radius: 4px;
+            }
+
+            .bank-label {
+                font-size: 0.8rem;
+            }
+
+            .bank-value {
+                font-size: 0.85rem;
             }
 
             .copy-btn {
                 padding: 0.4rem 0.75rem;
-                font-size: 0.75rem;
+                font-size: 0.7rem;
                 width: 100%;
+                margin-top: 0.35rem;
             }
 
             .bank-notice {
                 padding: 0.75rem;
                 gap: 0.5rem;
+                border-radius: 6px;
             }
 
             .bank-notice i {
                 font-size: 1rem;
+                margin-top: 0.15rem;
             }
 
             .bank-notice p {
                 font-size: 0.8rem;
+                margin: 0;
             }
 
             .total-section {
-                padding: 1rem;
-                margin-bottom: 1rem;
+                padding: 0.875rem;
+                margin-bottom: 0.875rem;
+                border-radius: 8px;
             }
 
             .total-line {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 margin-bottom: 0.5rem;
             }
 
             .total-final {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                padding-top: 0.5rem;
+                margin-top: 0.5rem;
+            }
+
+            .file-upload {
+                margin-bottom: 0.875rem;
             }
 
             .file-upload-label {
-                padding: 1.5rem 1rem;
+                padding: 1.25rem 0.875rem;
+                border-radius: 6px;
             }
 
             .file-upload-label i {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
+                font-size: 1.75rem;
+                margin-bottom: 0.4rem;
             }
 
             .file-upload-label span {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                margin-bottom: 0.15rem;
+            }
+
+            .file-upload-label small {
+                font-size: 0.7rem;
             }
 
             .file-name {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+                padding: 0.5rem;
+                margin-top: 0.5rem;
+                border-radius: 4px;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1.25rem;
+                margin-bottom: 1.5rem;
             }
 
             .footer-section {
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.75rem;
             }
 
             .footer-section h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.625rem;
+            }
+
+            .footer-section p {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-links li {
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            .contact-info li {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+                gap: 0.75rem;
+            }
+
+            .social-links {
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
             }
 
             .map-container iframe {
                 height: 200px;
+                border-radius: 6px;
+            }
+
+            .footer-bottom {
+                padding-top: 1.25rem;
+                font-size: 0.8rem;
+            }
+
+            .side-nav {
+                width: 280px;
+            }
+
+            .main-content {
+                margin-top: 70px;
+                padding: 1rem 0;
+            }
+
+            .header {
+                padding: 0.75rem 0;
+            }
+
+            .brand {
+                font-size: 1.15rem;
+                gap: 0.5rem;
+            }
+
+            .brand-logo {
+                height: 38px;
+            }
+
+            .alert ul li {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+            }
+
+            h3 {
+                font-size: 1.05rem;
+            }
+
+            .booking-card {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.05rem;
+            }
+
+            .paket-price {
+                font-size: 1.35rem;
+            }
+
+            label {
+                font-size: 0.9rem;
+            }
+
+            input, select, textarea {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.875rem;
+            }
+
+            .btn {
+                max-width: 100%;
+                padding: 0.75rem 2rem;
             }
         }
 

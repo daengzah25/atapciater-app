@@ -649,147 +649,300 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
             .container {
-                padding: 0 1rem;
+                padding: 0 0.875rem;
             }
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.35rem;
+                margin-bottom: 0.75rem;
             }
 
             h2 {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.75rem;
             }
 
             h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
             }
 
             .btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.9rem;
+                padding: 0.65rem 1.5rem;
+                font-size: 0.85rem;
+                width: 100%;
+            }
+
+            .main-content {
+                margin-top: 70px;
+                padding: 1rem 0;
+                min-height: calc(100vh - 200px);
             }
 
             .receipt-container {
-                padding: 0 1rem;
+                padding: 0;
+                max-width: 100%;
             }
 
             .receipt-card {
                 padding: 1rem;
                 border-radius: 8px;
+                margin-bottom: 1rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
             }
 
             .receipt-header {
-                margin-bottom: 1rem;
+                margin-bottom: 0.75rem;
                 padding-bottom: 0.75rem;
+                text-align: center;
             }
 
             .success-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-                margin-bottom: 0.75rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.35rem;
+                margin: 0 auto 0.5rem;
             }
 
             .receipt-title {
-                font-size: 1.25rem;
+                font-size: 1.05rem;
+                font-weight: 600;
+                margin-bottom: 0.35rem;
+            }
+
+            .receipt-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 0;
             }
 
             .info-section {
-                margin-bottom: 1rem;
+                margin-bottom: 0.75rem;
             }
 
             .info-item {
                 flex-direction: column;
                 align-items: flex-start;
-                font-size: 0.85rem;
+                font-size: 0.75rem;
                 margin-bottom: 0.5rem;
                 padding-bottom: 0.5rem;
+                border-bottom: 1px solid #eee;
+            }
+
+            .info-label {
+                font-weight: 500;
+                margin-bottom: 0.25rem;
             }
 
             .info-value {
                 text-align: left;
-                margin-top: 0.25rem;
+                font-weight: 600;
+                font-size: 0.85rem;
             }
 
             .detail-section {
-                padding: 1rem;
-                margin-bottom: 1rem;
+                padding: 0.75rem;
+                margin-bottom: 0.75rem;
+                border-radius: 6px;
             }
 
             .detail-title {
-                font-size: 0.95rem;
-                margin-bottom: 0.75rem;
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
             }
 
             .detail-item {
-                font-size: 0.85rem;
-                margin-bottom: 0.25rem;
-                padding-bottom: 0.25rem;
+                font-size: 0.8rem;
+                margin-bottom: 0.35rem;
+                padding-bottom: 0.35rem;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .detail-label {
+                flex: 1;
+            }
+
+            .detail-value {
+                text-align: right;
+                font-weight: 600;
             }
 
             .addon-detail {
-                padding-left: 0.5rem;
+                padding-left: 0;
+                font-size: 0.75rem;
+            }
+
+            .addon-item {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.75rem;
+                margin-bottom: 0.2rem;
             }
 
             .total-section {
-                padding: 1rem;
-                margin-bottom: 1rem;
+                padding: 0.75rem;
+                margin-bottom: 0.75rem;
+                border-radius: 6px;
+            }
+
+            .total-item {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
             }
 
             .total-label {
-                font-size: 0.85rem;
+                font-weight: 500;
             }
 
             .total-amount {
-                font-size: 1.5rem;
+                font-weight: 600;
+                text-align: right;
+            }
+
+            .total-final {
+                font-size: 1rem;
+                font-weight: 700;
+                padding-top: 0.5rem;
+                margin-top: 0.5rem;
+                border-top: 1px solid #ddd;
             }
 
             .action-buttons {
+                display: grid;
+                grid-template-columns: 1fr;
                 gap: 0.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .action-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+                border-radius: 6px;
             }
 
             .whatsapp-notification {
                 padding: 0.75rem;
+                border-radius: 6px;
+                font-size: 0.8rem;
+            }
+
+            .whatsapp-notification i {
+                margin-right: 0.5rem;
+            }
+
+            .header {
+                padding: 0.75rem 0;
+            }
+
+            .brand {
+                font-size: 1.15rem;
+                gap: 0.5rem;
+            }
+
+            .brand-logo {
+                height: 38px;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .footer-section {
-                margin-bottom: 0.5rem;
+                gap: 1.25rem;
+                margin-bottom: 1.5rem;
             }
 
             .footer-section h3 {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.625rem;
+            }
+
+            .footer-section p {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            .contact-info li {
+                font-size: 0.8rem;
+            }
+
+            .social-links {
+                gap: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                font-size: 0.95rem;
             }
 
             .map-container iframe {
                 height: 200px;
+                border-radius: 6px;
             }
 
-            .status-badge {
-                padding: 0.4rem 0.75rem;
-                font-size: 0.7rem;
+            .footer-bottom {
+                padding-top: 1.25rem;
+                font-size: 0.75rem;
             }
         }
 
-        @media (min-width: 768px) {
-            .btn {
-                width: auto;
-                max-width: none;
+        @media (min-width: 641px) and (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
             }
 
-            .btn-group {
-                flex-direction: row;
-                justify-content: center;
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            h2 {
+                font-size: 1.35rem;
             }
 
             .receipt-card {
-                padding: 2rem;
+                padding: 1.5rem;
+            }
+
+            .success-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.75rem;
+            }
+
+            .receipt-title {
+                font-size: 1.2rem;
+            }
+
+            .info-item {
+                font-size: 0.9rem;
+            }
+
+            .detail-section {
+                padding: 1rem;
+            }
+
+            .detail-title {
+                font-size: 1rem;
+            }
+
+            .detail-item {
+                font-size: 0.9rem;
+            }
+
+            .total-section {
+                padding: 1rem;
+            }
+
+            .total-amount {
+                font-size: 1.35rem;
             }
 
             .action-buttons {
@@ -799,25 +952,60 @@
 
             .whatsapp-notification {
                 grid-column: 1 / -1;
-                margin-bottom: 0;
+            }
+
+            .btn {
+                max-width: none;
+                padding: 0.75rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .map-container iframe {
+                height: 250px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .receipt-container {
+                max-width: 600px;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.25rem;
             }
 
             .footer-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-
-            .map-container iframe {
-                height: 300px;
-            }
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 1025px) {
             .receipt-container {
-                max-width: 550px;
+                max-width: 650px;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .whatsapp-notification {
+                grid-column: 1 / -1;
             }
 
             .footer-grid {
                 grid-template-columns: repeat(4, 1fr);
+            }
+
+            .btn {
+                width: auto;
+                max-width: none;
             }
         }
 
