@@ -101,6 +101,15 @@
             border-radius: 2px;
         }
 
+        /* Icon spacing in nav links */
+        .nav-links a i,
+        .nav-links button i {
+            margin-right: 0.5rem;
+            display: inline-block;
+            width: 1.1rem;
+            text-align: center;
+        }
+
         .nav-links a:hover:before {
             width: 100%;
         }
@@ -156,104 +165,166 @@
         }
 
         .testimoni-table {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            box-shadow: none;
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
+            display: none;
         }
 
-        th, td {
-            padding: 0.75rem;
-            text-align: left;
+        .testimoni-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .testimoni-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+        .testimoni-card-header {
+            display: block;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--border);
+        }
+
+        .testimoni-nama {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+
+        .testimoni-info {
+            display: grid;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimoni-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 0.9rem;
         }
 
-        th {
-            background: var(--primary-light);
-            color: var(--white);
+        .testimoni-info-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .testimoni-info-value {
             font-weight: 600;
-            position: sticky;
-            top: 0;
-            padding: 0.6rem;
-            font-size: 0.85rem;
+            color: var(--text);
         }
 
-        tr:hover {
+        .testimoni-text {
             background: var(--light-bg);
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin: 0.5rem 0;
+            color: #555;
+            word-break: break-word;
         }
 
-        /* Mobile-First Responsive Table */
-        @media (max-width: 1024px) {
+        .card-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .card-actions form {
+            width: 100%;
+        }
+
+        .card-actions form button {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        .no-testimoni {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            color: #666;
+        }
+
+        .rating-stars {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Desktop - Show Table */
+        @media (min-width: 1025px) {
             .testimoni-table {
-                overflow-x: auto;
+                background: var(--white);
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
 
             table {
-                min-width: 900px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            table,
-            thead,
-            tbody,
-            th,
-            td,
-            tr {
-                display: block;
+                display: table;
                 width: 100%;
+                border-collapse: collapse;
             }
 
-            thead {
+            .testimoni-cards {
                 display: none;
             }
 
-            tr {
-                margin-bottom: 0.5rem;
-                border: 1px solid var(--border);
-                border-radius: 6px;
-                overflow: hidden;
-                background: var(--white);
+            th, td {
+                padding: 0.75rem;
+                text-align: left;
+                border-bottom: 1px solid var(--border);
+                font-size: 0.9rem;
+            }
+
+            th {
+                background: var(--primary-light);
+                color: var(--white);
+                font-weight: 600;
+                position: sticky;
+                top: 0;
+                padding: 0.6rem;
+                font-size: 0.85rem;
             }
 
             tr:hover {
-                background: var(--white);
+                background: var(--light-bg);
             }
 
-            td {
-                padding: 0.4rem;
-                position: relative;
-                border: none;
-                border-bottom: 1px solid #f0f0f0;
-                font-size: 0.8rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 0.5rem;
+            .testimoni-text {
+                background: transparent;
+                padding: 0;
+                font-size: 0.9rem;
             }
+        }
 
-            td:last-child {
-                border-bottom: none;
-            }
-
-            td:before {
-                content: attr(data-label);
-                font-weight: 600;
-                background: none;
-                color: #333;
-                font-size: 0.75rem;
-                flex-shrink: 0;
-                min-width: 0;
-            }
-
-            .rating-stars {
-                justify-content: flex-end;
+        /* Tablet - Cards */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .testimoni-cards {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             }
         }
 
@@ -302,7 +373,9 @@
             }
 
             .testimoni-table {
-                min-width: 800px;
+                /* avoid forcing a wide min-width on small screens */
+                min-width: 0;
+                width: 100%;
             }
 
             .filter-form {
@@ -387,11 +460,23 @@
             }
 
             .testimoni-table {
-                min-width: 800px;
+                /* avoid forcing a wide min-width on small screens */
+                min-width: 0;
+                width: 100%;
             }
 
             .filter-form {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile override: allow testimonial text to wrap and avoid overflow */
+        @media (max-width: 768px) {
+            .testimoni-text {
+                max-width: 100%;
+                white-space: normal;
+                overflow: visible;
+                text-overflow: unset;
             }
         }
     </style>
@@ -407,12 +492,12 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links" id="navLinks">
-                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-                <a href="{{ route('admin.kelola.paket') }}">Kelola Paket</a>
-                <a href="{{ route('admin.kelola.addons') }}">Kelola Addons</a>
-                <a href="{{ route('admin.kelola.pesanan') }}">Kelola Pesanan</a>
-                <a href="{{ route('admin.kelola.libur') }}">Kelola Libur</a>
-                <a href="{{ route('admin.kelola.testimoni') }}">Kelola Testimoni</a>
+                <a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="{{ route('admin.kelola.paket') }}"><i class="fas fa-campground"></i> Kelola Paket</a>
+                <a href="{{ route('admin.kelola.addons') }}"><i class="fas fa-tools"></i> Kelola Addons</a>
+                <a href="{{ route('admin.kelola.pesanan') }}"><i class="fas fa-clipboard-list"></i> Kelola Pesanan</a>
+                <a href="{{ route('admin.kelola.libur') }}"><i class="fas fa-calendar-alt"></i> Kelola Libur</a>
+                <a href="{{ route('admin.kelola.testimoni') }}"><i class="fas fa-star"></i> Kelola Testimoni</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -439,6 +524,7 @@
         @endif
 
         <div class="testimoni-table">
+            <!-- Table for Desktop -->
             <table>
                 <thead>
                     <tr>
@@ -488,6 +574,47 @@
                     @endforelse
                 </tbody>
             </table>
+
+            <!-- Cards for Mobile/Tablet -->
+            <div class="testimoni-cards">
+                @forelse($testimonials as $testimonial)
+                <div class="testimoni-card">
+                    <div class="testimoni-card-header">
+                        <div>
+                            <div class="testimoni-nama">{{ $testimonial->nama }}</div>
+                            <div style="font-size: 0.85rem; color: #666; margin-top: 0.25rem;">{{ $testimonial->asal_kota ?? '-' }}</div>
+                        </div>
+                    </div>
+
+                    <div class="rating-stars" style="margin-bottom: 0.75rem;">
+                        @for($i = 1; $i <= 5; $i++)
+                            <i class="fas fa-star{{ $i <= $testimonial->rating ? '' : '-half-alt' }}"></i>
+                        @endfor
+                        <span style="margin-left: 0.5rem; color: #666; font-size: 0.9rem;">({{ $testimonial->rating }})</span>
+                    </div>
+
+                    <div class="testimoni-text">{{ $testimonial->testimoni }}</div>
+
+                    <div style="font-size: 0.85rem; color: #999; margin-bottom: 1rem;">{{ $testimonial->created_at->format('d F Y') }}</div>
+
+                    <div class="card-actions">
+                        <form action="{{ route('admin.testimoni.hapus', $testimonial->id_testimonial) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                @empty
+                <div class="no-testimoni">
+                    <i class="fas fa-comment-slash" style="font-size: 4rem; margin-bottom: 1rem; color: #ccc;"></i>
+                    <h3>Belum ada testimoni</h3>
+                    <p>Testimoni dari pelanggan akan muncul di sini</p>
+                </div>
+                @endforelse
+            </div>
         </div>
     </div>
 

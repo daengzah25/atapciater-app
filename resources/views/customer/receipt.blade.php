@@ -444,23 +444,88 @@
 
         /* Total Section */
         .total-section {
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            background: linear-gradient(135deg, var(--accent), #ff7300);
             color: white;
             border-radius: var(--radius);
-            padding: 1.25rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             margin-bottom: 1.5rem;
+            box-shadow: 0 8px 25px rgba(255,152,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .total-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .total-breakdown {
+            text-align: left;
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.15);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breakdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .breakdown-label {
+            font-weight: 500;
+        }
+
+        .breakdown-amount {
+            font-weight: 600;
+        }
+
+        .breakdown-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.3);
+            margin: 0.75rem 0;
+            position: relative;
+            z-index: 1;
         }
 
         .total-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
+            font-size: 0.9rem;
+            opacity: 0.85;
             margin-bottom: 0.5rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
         }
 
         .total-amount {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: bold;
+            line-height: 1.2;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Action Buttons */
@@ -783,33 +848,34 @@
             }
 
             .total-section {
-                padding: 0.75rem;
+                padding: 1.25rem 1rem;
                 margin-bottom: 0.75rem;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(46,125,50,0.25);
+            }
+
+            .total-breakdown {
+                padding: 0.75rem;
+                margin-bottom: 1rem;
                 border-radius: 6px;
             }
 
-            .total-item {
-                display: flex;
-                justify-content: space-between;
-                font-size: 0.8rem;
+            .breakdown-item {
                 margin-bottom: 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .breakdown-divider {
+                margin: 0.5rem 0;
             }
 
             .total-label {
-                font-weight: 500;
+                font-size: 0.8rem;
+                margin-bottom: 0.35rem;
             }
 
             .total-amount {
-                font-weight: 600;
-                text-align: right;
-            }
-
-            .total-final {
-                font-size: 1rem;
-                font-weight: 700;
-                padding-top: 0.5rem;
-                margin-top: 0.5rem;
-                border-top: 1px solid #ddd;
+                font-size: 1.35rem;
             }
 
             .action-buttons {
@@ -938,11 +1004,27 @@
             }
 
             .total-section {
+                padding: 1.5rem;
+                box-shadow: 0 6px 16px rgba(46,125,50,0.3);
+            }
+
+            .total-breakdown {
                 padding: 1rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .breakdown-item {
+                margin-bottom: 0.75rem;
+                font-size: 0.95rem;
+            }
+
+            .total-label {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
             }
 
             .total-amount {
-                font-size: 1.35rem;
+                font-size: 1.5rem;
             }
 
             .action-buttons {

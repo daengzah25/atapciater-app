@@ -236,6 +236,7 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.75rem;
             padding: 0.875rem 2rem;
             border: none;
@@ -245,11 +246,10 @@
             transition: var(--transition);
             cursor: pointer;
             font-size: 1rem;
-            justify-content: center;
             position: relative;
             overflow: hidden;
-            width: 100%;
-            max-width: 300px;
+            width: auto;
+            max-width: 100%;
         }
 
         .btn::before {
@@ -302,11 +302,25 @@
             box-shadow: 0 8px 20px rgba(255,152,0,0.3);
         }
 
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            box-shadow: var(--shadow);
+            font-weight: 600;
+        }
+
+        .btn-white:hover {
+            background: var(--light-gray);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
         .btn-group {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 1rem;
             align-items: center;
+            justify-content: center;
         }
 
         /* Section Styles */
@@ -383,7 +397,6 @@
         }
 
         .package-header {
-            height: 200px;
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -394,15 +407,17 @@
             font-size: 3rem;
         }
 
+        /* Images fill the card width and keep their natural aspect ratio.
+           Card header height will follow the image's height. */
         .package-header img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             transition: var(--transition);
         }
 
         .package-card:hover .package-header img {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .package-price {
@@ -725,6 +740,12 @@
                 border-radius: 0;
             }
 
+            /* On small screens keep responsive width/ratio (don't force a capped height) */
+            .package-header img {
+                width: 100%;
+                height: auto;
+            }
+
             .package-header {
                 padding: 0.75rem;
             }
@@ -773,15 +794,26 @@
             }
 
             .btn-group {
-                flex-direction: column;
+                flex-direction: row;
                 gap: 0.5rem;
                 margin-top: 0.75rem;
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
             .package-card .btn {
                 padding: 0.6rem 1rem;
                 font-size: 0.8rem;
-                width: 100%;
+                width: auto;
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .cta-section .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
+                width: auto;
+                min-width: 140px;
             }
 
             .cta-section {
@@ -901,6 +933,12 @@
                 height: 180px;
             }
 
+            /* Tablet: responsive width + natural aspect ratio */
+            .package-header img {
+                width: 100%;
+                height: auto;
+            }
+
             .package-name {
                 font-size: 1rem;
             }
@@ -913,6 +951,7 @@
                 max-width: none;
                 padding: 0.75rem 2rem;
                 font-size: 0.9rem;
+                width: auto;
             }
 
             .cta-section h2 {
@@ -927,6 +966,11 @@
                 flex-direction: row;
                 justify-content: center;
                 gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .cta-section .btn {
+                min-width: 160px;
             }
 
             .footer-grid {
@@ -1089,7 +1133,7 @@
                         <ul class="package-features">
                             <li>
                                 <i class="fas fa-users"></i>
-                                <span>Slot: {{ $paket->slot }} orang</span>
+                                <span>Slot: {{ $paket->slot }}</span>
                             </li>
                             <li>
                                 <i class="fas fa-list"></i>
@@ -1126,7 +1170,7 @@
                         <i class="fab fa-whatsapp"></i>
                         Chat via WhatsApp
                     </a>
-                    <a href="{{ route('landing.page') }}#contact" class="btn btn-secondary">
+                    <a href="{{ route('landing.page') }}#contact" class="btn btn-white">
                         <i class="fas fa-phone"></i>
                         Hubungi Kami
                     </a>

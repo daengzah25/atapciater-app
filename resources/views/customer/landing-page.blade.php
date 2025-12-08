@@ -387,7 +387,7 @@
         /* Features Section */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
@@ -438,8 +438,8 @@
         /* Packages Section */
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
 
         .package-card {
@@ -470,16 +470,23 @@
         }
 
         .package-header {
-            height: 220px;
+            height: 280px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
         }
 
         .package-header img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            padding: 1rem;
             transition: var(--transition);
+            background: var(--white);
+            border-radius: 8px;
         }
 
         .package-card:hover .package-header img {
@@ -492,34 +499,35 @@
             right: 1rem;
             background: var(--white);
             color: var(--primary);
-            padding: 0.75rem 1.25rem;
+            padding: 0.5rem 1rem;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1rem;
             box-shadow: var(--shadow);
         }
 
         .package-body {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .package-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
             color: var(--primary);
         }
 
         .package-features {
             list-style: none;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
         }
 
         .package-features li {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.75rem 0;
+            padding: 0.5rem 0;
             border-bottom: 1px solid var(--light-gray);
+            font-size: 0.85rem;
         }
 
         .package-features li:last-child {
@@ -534,12 +542,14 @@
         /* Gallery Section */
         .gallery-section {
             background: var(--light);
+            padding: 4rem 0;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .gallery-item {
@@ -548,6 +558,13 @@
             aspect-ratio: 4/3;
             position: relative;
             cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
         }
 
         .gallery-item img {
@@ -566,11 +583,21 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4), transparent);
             color: var(--white);
-            padding: 1.5rem;
+            padding: 1.5rem 1rem;
             transform: translateY(100%);
             transition: var(--transition);
+            display: flex;
+            align-items: flex-end;
+            min-height: 80px;
+            justify-content: center;
+        }
+
+        .gallery-overlay h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
         }
 
         .gallery-item:hover .gallery-overlay {
@@ -949,7 +976,14 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
+        /* Button Groups - Always Centered */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            align-items: center;
+        }
         @media (max-width: 640px) {
             .container {
                 padding: 0 0.875rem;
@@ -986,60 +1020,79 @@
                 margin-bottom: 1.5rem;
             }
 
-            .feature-grid {
-                grid-template-columns: 1fr;
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 0.875rem;
             }
 
             .feature-card {
-                padding: 1rem;
-                margin: 0;
-                border-radius: 8px;
+                padding: 0.75rem;
             }
 
             .feature-card i {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
                 margin-bottom: 0.5rem;
             }
 
             .feature-card h3 {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .feature-card p {
+                font-size: 0.75rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .package-card {
+                border-radius: 6px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            }
+
+            .package-header {
+                height: 200px;
+                padding: 0.5rem;
+            }
+
+            .package-header img {
+                object-fit: contain;
+                padding: 0.75rem;
+            }
+
+            .package-body {
+                padding: 0.75rem;
+            }
+
+            .package-title {
                 font-size: 0.9rem;
                 margin-bottom: 0.5rem;
             }
 
-            .feature-card p {
-                font-size: 0.8rem;
-            }
-
-            .package-grid {
-                grid-template-columns: 1fr;
-                gap: 0.875rem;
-            }
-
-            .package-card {
-                padding: 1rem;
-                margin: 0;
-                border-radius: 8px;
-            }
-
-            .package-card h3 {
-                font-size: 0.95rem;
-                margin-bottom: 0.5rem;
-            }
-
             .package-price {
-                font-size: 1.1rem;
-                margin-bottom: 0.5rem;
+                font-size: 0.9rem;
+                padding: 0.4rem 0.75rem;
+                bottom: 0.75rem;
+                right: 0.75rem;
             }
 
-            .package-card p {
-                font-size: 0.8rem;
-                margin-bottom: 0.4rem;
+            .package-features {
+                margin-bottom: 0.75rem;
             }
 
-            .package-card ul li {
+            .package-features li {
+                font-size: 0.7rem;
+                padding: 0.3rem 0;
+                margin-bottom: 0.2rem;
+            }
+
+            .package-features i {
                 font-size: 0.75rem;
-                margin-bottom: 0.3rem;
+                width: 14px;
             }
 
             .package-card .slot-badge {
@@ -1049,27 +1102,39 @@
             }
 
             .btn-group {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: row;
+                justify-content: center;
                 gap: 0.75rem;
                 margin-top: 1rem;
+                flex-wrap: wrap;
             }
 
             .btn {
-                width: 100%;
-                max-width: 100%;
+                flex: 1;
+                min-width: 120px;
+                max-width: calc(50% - 0.375rem);
                 padding: 0.65rem 1.5rem;
                 font-size: 0.85rem;
             }
 
             .gallery-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: 0.75rem;
+                margin-bottom: 1.5rem;
             }
 
             .gallery-item {
                 border-radius: 6px;
-                height: 140px;
+                aspect-ratio: 1;
+            }
+
+            .gallery-overlay {
+                padding: 1rem 0.75rem;
+                min-height: 60px;
+            }
+
+            .gallery-overlay h4 {
+                font-size: 0.85rem;
             }
 
             .testimonial-grid {
@@ -1234,23 +1299,33 @@
                 font-size: 1.6rem;
             }
 
-            .feature-grid {
+            .features-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
 
-            .package-grid {
+            .packages-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
 
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 0.875rem;
+                gap: 1rem;
+                margin-bottom: 2rem;
             }
 
-            .gallery-item {
-                height: 160px;
+            .package-header {
+                height: 220px;
+            }
+
+            .package-header img {
+                object-fit: contain;
+                padding: 1rem;
+            }
+
+            .gallery-overlay h4 {
+                font-size: 0.95rem;
             }
 
             .testimonial-grid {
@@ -1283,6 +1358,14 @@
             }
         }
 
+        /* Button Groups - Mobile First */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
         /* Utility Classes */
         .text-center {
             text-align: center;
@@ -1302,6 +1385,97 @@
 
         .mb-2 {
             margin-bottom: 2rem;
+        }
+        /* Lightbox / Image Preview */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.85);
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            object-fit: contain;
+            background: #000;
+        }
+
+        .lightbox-caption {
+            color: #fff;
+            font-size: 0.95rem;
+            text-align: center;
+            max-width: 95%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -44px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.35rem;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        .lightbox-nav button {
+            pointer-events: auto;
+            background: rgba(255,255,255,0.06);
+            border: none;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 640px) {
+            .lightbox-img { max-height: 70vh; }
+            .lightbox-close { top: -36px; font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -1535,7 +1709,7 @@
                             <i class="fas fa-calendar-plus"></i>
                             Booking Sekarang
                         </a>
-                        <a href="{{ route('customer.cektiket') }}" class="btn btn-secondary">
+                        <a href="{{ route('customer.cektiket') }}" class="btn btn-white">
                             <i class="fas fa-ticket-alt"></i>
                             Cek Tiket Saya
                         </a>
@@ -1642,6 +1816,19 @@
         </section>
     </main>
 
+    <!-- Lightbox / Image Preview Modal -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-content" role="dialog" aria-labelledby="lightboxCaption">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Tutup preview"><i class="fas fa-times"></i></button>
+            <img src="" alt="" id="lightboxImg" class="lightbox-img">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <button id="lightboxPrev" aria-label="Sebelumnya"><i class="fas fa-chevron-left"></i></button>
+                <button id="lightboxNext" aria-label="Berikutnya"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer" id="contact">
         <div class="container">
@@ -1687,10 +1874,6 @@
                         <li>
                             <i class="fas fa-envelope"></i>
                             <span>info@atapciater.com</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-clock"></i>
-                            <span>Buka Setiap Hari 24 Jam</span>
                         </li>
                     </ul>
 
@@ -1824,6 +2007,76 @@
                 }
             });
         });
+
+        /* Lightbox functionality for gallery images */
+        (function() {
+            const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+            const lightbox = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightboxImg');
+            const lbCaption = document.getElementById('lightboxCaption');
+            const lbClose = document.getElementById('lightboxClose');
+            const lbPrev = document.getElementById('lightboxPrev');
+            const lbNext = document.getElementById('lightboxNext');
+            let currentIndex = -1;
+
+            if (!lightbox || galleryImgs.length === 0) return;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                const img = galleryImgs[currentIndex];
+                lbImg.src = img.src;
+                lbImg.alt = img.alt || '';
+                const overlay = img.closest('.gallery-item')?.querySelector('.gallery-overlay h4');
+                lbCaption.textContent = overlay ? overlay.textContent : (img.alt || '');
+                lightbox.classList.add('active');
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lbImg.src = '';
+                lbCaption.textContent = '';
+                document.body.style.overflow = 'auto';
+                currentIndex = -1;
+            }
+
+            function showPrev() {
+                if (currentIndex <= 0) currentIndex = galleryImgs.length - 1; else currentIndex--;
+                openLightbox(currentIndex);
+            }
+
+            function showNext() {
+                if (currentIndex === -1 || currentIndex >= galleryImgs.length - 1) currentIndex = 0; else currentIndex++;
+                openLightbox(currentIndex);
+            }
+
+            galleryImgs.forEach((img, idx) => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openLightbox(idx);
+                });
+            });
+
+            lbClose.addEventListener('click', closeLightbox);
+            lbPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+            lbNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+
+            // Close when clicking outside image
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            });
+        })();
     </script>
 </body>
 

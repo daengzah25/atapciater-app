@@ -105,6 +105,15 @@
             border-radius: 2px;
         }
 
+        /* Icon spacing in nav links */
+        .nav-links a i,
+        .nav-links button i {
+            margin-right: 0.5rem;
+            display: inline-block;
+            width: 1.1rem;
+            text-align: center;
+        }
+
         .nav-links a:hover:before {
             width: 100%;
         }
@@ -122,101 +131,196 @@
         }
 
         .pesanan-table {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            box-shadow: none;
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
+            display: none;
         }
 
-        th,
-        td {
+        .pesanan-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .pesanan-card {
+            background: var(--white);
+            border-radius: 10px;
             padding: 0.75rem;
-            text-align: left;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+        .pesanan-card-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            margin-bottom: 0.4rem;
+            padding-bottom: 0.4rem;
             border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
+            align-items: flex-start;
         }
 
-        th {
-            background: var(--primary-light);
-            color: var(--white);
+        .pesanan-id {
             font-weight: 600;
-            position: sticky;
-            top: 0;
-            padding: 0.6rem;
-            font-size: 0.85rem;
+            color: var(--primary-dark);
+            font-size: 0.75rem;
+            word-break: break-word;
+            width: 100%;
         }
 
-        tr:hover {
-            background: var(--light-bg);
+        .card-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.15rem 0.3rem;
+            margin-bottom: 0.4rem;
         }
 
-        /* Mobile-First Responsive Table */
-        @media (max-width: 1024px) {
+        .card-info-row {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.65rem;
+            align-items: flex-start;
+        }
+
+        .card-info-label {
+            color: #888;
+            font-weight: 400;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-size: 0.6rem;
+        }
+
+        .card-info-value {
+            font-weight: 600;
+            color: var(--text);
+            text-align: left;
+            word-break: break-word;
+            line-height: 1.2;
+        }
+
+        .card-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.15rem;
+            margin-top: 0.4rem;
+        }
+
+        .card-actions button,
+        .card-actions form {
+            width: 100%;
+        }
+
+        .card-actions button {
+            padding: 0.3rem 0.4rem;
+            font-size: 0.6rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.15rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .card-actions form button {
+            width: 100%;
+            padding: 0.3rem 0.4rem;
+            font-size: 0.6rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.15rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .card-actions form {
+            width: 100%;
+        }
+
+        .no-pesanan {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            color: #666;
+        }
+
+        .no-pesanan {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: #666;
+        }
+
+        /* Desktop - Show Table */
+        @media (min-width: 1025px) {
             .pesanan-table {
-                overflow-x: auto;
+                background: var(--white);
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
 
             table {
-                min-width: 800px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            table,
-            thead,
-            tbody,
-            th,
-            td,
-            tr {
-                display: block;
-                width: 100%;
+                display: table;
             }
 
-            thead {
+            .pesanan-cards {
                 display: none;
             }
 
-            tr {
-                margin-bottom: 0.5rem;
-                border: 1px solid var(--border);
-                border-radius: 6px;
-                overflow: hidden;
-                background: var(--white);
+            th,
+            td {
+                padding: 0.75rem;
+                text-align: left;
+                border-bottom: 1px solid var(--border);
+                font-size: 0.9rem;
+            }
+
+            th {
+                background: var(--primary-light);
+                color: var(--white);
+                font-weight: 600;
+                position: sticky;
+                top: 0;
+                padding: 0.6rem;
+                font-size: 0.85rem;
             }
 
             tr:hover {
-                background: var(--white);
+                background: var(--light-bg);
             }
 
-            td {
-                padding: 0.4rem;
-                position: relative;
-                border: none;
-                border-bottom: 1px solid #f0f0f0;
-                font-size: 0.8rem;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+            .pesanan-card-header {
+                flex-direction: row;
                 gap: 0.5rem;
+                align-items: center;
+                justify-content: space-between;
             }
+        }
 
-            td:last-child {
-                border-bottom: none;
-            }
-
-            td:before {
-                content: attr(data-label);
-                font-weight: 600;
-                background: none;
-                color: #333;
-                font-size: 0.75rem;
-                flex-shrink: 0;
-                min-width: 0;
+        /* Tablet - Cards */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .pesanan-cards {
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             }
         }
 
@@ -518,11 +622,34 @@
             }
 
             .container {
-                overflow-x: auto;
+                overflow-x: visible;
+                padding: 0 0.75rem;
             }
 
             .pesanan-table {
-                min-width: 800px;
+                min-width: auto;
+            }
+
+            /* Mobile: compact action buttons and layout to avoid horizontal scroll */
+            .card-actions {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.25rem;
+                margin-top: 0.4rem;
+            }
+
+            .card-actions .detail-pesanan-btn {
+                grid-column: 1 / -1;
+            }
+
+            .card-actions .btn-primary,
+            .card-actions .btn-danger {
+                padding: 0.28rem 0.4rem;
+                font-size: 0.65rem;
+                margin-right: 0;
+            }
+
+            .pesanan-card {
+                border-left-width: 3px;
             }
 
             .action-buttons {
@@ -543,12 +670,12 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links" id="navLinks">
-                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-                <a href="{{ route('admin.kelola.paket') }}">Kelola Paket</a>
-                <a href="{{ route('admin.kelola.addons') }}">Kelola Addons</a>
-                <a href="{{ route('admin.kelola.pesanan') }}">Kelola Pesanan</a>
-                <a href="{{ route('admin.kelola.libur') }}">Kelola Libur</a>
-                <a href="{{ route('admin.kelola.testimoni') }}">Kelola Testimoni</a>
+                <a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a href="{{ route('admin.kelola.paket') }}"><i class="fas fa-campground"></i> Kelola Paket</a>
+                <a href="{{ route('admin.kelola.addons') }}"><i class="fas fa-tools"></i> Kelola Addons</a>
+                <a href="{{ route('admin.kelola.pesanan') }}"><i class="fas fa-clipboard-list"></i> Kelola Pesanan</a>
+                <a href="{{ route('admin.kelola.libur') }}"><i class="fas fa-calendar-alt"></i> Kelola Libur</a>
+                <a href="{{ route('admin.kelola.testimoni') }}"><i class="fas fa-star"></i> Kelola Testimoni</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -567,6 +694,7 @@
         @endif
 
         <div class="pesanan-table">
+            <!-- Table for Desktop -->
             <table>
                 <thead>
                     <tr>
@@ -593,7 +721,6 @@
                             </span>
                         </td>
                         <td data-label="Aksi">
-                            <!-- gunakan kelas yang konsisten dengan halaman lain -->
                             <button class="btn-primary detail-pesanan-btn" data-id="{{ $order->id_pesanan }}">
                                 <i class="fas fa-eye"></i> Detail
                             </button>
@@ -628,6 +755,71 @@
                     @endforelse
                 </tbody>
             </table>
+
+            <!-- Cards for Mobile/Tablet -->
+            <div class="pesanan-cards">
+                @forelse($pesanan as $order)
+                <div class="pesanan-card">
+                    <div class="pesanan-card-header">
+                        <div class="pesanan-id">
+                            {{ $order->id_pesanan }}
+                        </div>
+                        <span class="status-badge status-{{ str_replace('_', '-', $order->status) }}">
+                            {{ ucwords(str_replace('_', ' ', $order->status)) }}
+                        </span>
+                    </div>
+
+                    <div class="card-info">
+                        <div class="card-info-row">
+                            <span class="card-info-label">Pemesan</span>
+                            <span class="card-info-value">{{ $order->nama_pemesan }}</span>
+                        </div>
+                        <div class="card-info-row">
+                            <span class="card-info-label">Booking</span>
+                            <span class="card-info-value">{{ \Carbon\Carbon::parse($order->tanggal_booking)->translatedFormat('d M Y') }}</span>
+                        </div>
+                        <div class="card-info-row">
+                            <span class="card-info-label">Paket</span>
+                            <span class="card-info-value">{{ $order->nama_paket }}</span>
+                        </div>
+                        <div class="card-info-row">
+                            <span class="card-info-label">Total</span>
+                            <span class="card-info-value">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-primary detail-pesanan-btn" data-id="{{ $order->id_pesanan }}">
+                            <i class="fas fa-eye"></i> Detail
+                        </button>
+                        @if($order->status == 'menunggu_konfirmasi')
+                        <form action="{{ route('admin.pesanan.update-status', $order->id_pesanan) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <input type="hidden" name="status" value="dikonfirmasi">
+                            <button type="submit" class="btn-primary" onclick="return confirm('Konfirmasi pesanan ini?')">
+                                <i class="fas fa-check"></i> Konfirmasi
+                            </button>
+                        </form>
+                        <form action="{{ route('admin.pesanan.update-status', $order->id_pesanan) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <input type="hidden" name="status" value="dibatalkan">
+                            <button type="submit" class="btn-danger" onclick="return confirm('Batalkan pesanan ini?')">
+                                <i class="fas fa-times"></i> Batal
+                            </button>
+                        </form>
+                        @endif
+                    </div>
+                </div>
+                @empty
+                <div class="no-pesanan">
+                    <i class="fas fa-inbox" style="font-size: 4rem; margin-bottom: 1rem; color: #ccc;"></i>
+                    <h3>Belum ada pesanan</h3>
+                    <p>Semua pesanan dari customer akan muncul di sini</p>
+                </div>
+                @endforelse
+            </div>
         </div>
     </div>
 
@@ -747,6 +939,17 @@
                                 <span class="detail-value">Rp ${formatRupiah(sisaBayar)}</span>
                             </div>
                         `;
+                    } else if (pesanan.metode_bayar === 'full_cash_on_site') {
+                        paymentInfo = `
+                            <div class="detail-item">
+                                <span class="detail-label">Total Harga:</span>
+                                <span class="detail-value">Rp ${formatRupiah(totalFull)}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Status Pembayaran:</span>
+                                <span class="detail-value"><span style="background: #ffc107; color: #856404; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Menunggu di Tempat</span></span>
+                            </div>
+                        `;
                     } else {
                         paymentInfo = `
                             <div class="detail-item">
@@ -804,7 +1007,7 @@
                             ${addonsHtml}
                             <div class="detail-item">
                                 <span class="detail-label">Metode Bayar:</span>
-                                <span class="detail-value">${pesanan.metode_bayar === 'dp_50%' ? 'DP 50%' : 'LUNAS'}</span>
+                                <span class="detail-value">${pesanan.metode_bayar === 'dp_50%' ? 'DP 50%' : pesanan.metode_bayar === 'full_cash_on_site' ? 'Full Cash di Tempat' : 'LUNAS'}</span>
                             </div>
                             ${paymentInfo}
                         </div>
@@ -936,5 +1139,4 @@
         }
     </script>
 </body>
-
 </html>

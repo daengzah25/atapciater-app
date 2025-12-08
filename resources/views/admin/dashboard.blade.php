@@ -100,6 +100,15 @@
             border-radius: 2px;
         }
 
+        /* Icon spacing in nav links */
+        .nav-links a i,
+        .nav-links button i {
+            margin-right: 0.5rem;
+            display: inline-block;
+            width: 1.1rem;
+            text-align: center;
+        }
+
         .nav-links a:hover:before {
             width: 100%;
         }
@@ -188,7 +197,8 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            /* Force 2 cards per row */
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
             margin-bottom: 3rem;
         }
@@ -228,7 +238,8 @@
 
         .quick-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* Force 2 cards per row */
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
         }
 
@@ -308,12 +319,12 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links" id="navLinks">
-                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-                <a href="{{ route('admin.kelola.paket') }}">Kelola Paket</a>
-                <a href="{{ route('admin.kelola.addons') }}">Kelola Addons</a>
-                <a href="{{ route('admin.kelola.pesanan') }}">Kelola Pesanan</a>
-                <a href="{{ route('admin.kelola.libur') }}">Kelola Libur</a>
-                <a href="{{ route('admin.kelola.testimoni') }}">Kelola Testimoni</a>
+                    <a href="{{ route('admin.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                    <a href="{{ route('admin.kelola.paket') }}"><i class="fas fa-campground"></i> Kelola Paket</a>
+                    <a href="{{ route('admin.kelola.addons') }}"><i class="fas fa-tools"></i> Kelola Addons</a>
+                    <a href="{{ route('admin.kelola.pesanan') }}"><i class="fas fa-clipboard-list"></i> Kelola Pesanan</a>
+                    <a href="{{ route('admin.kelola.libur') }}"><i class="fas fa-calendar-alt"></i> Kelola Libur</a>
+                    <a href="{{ route('admin.kelola.testimoni') }}"><i class="fas fa-star"></i> Kelola Testimoni</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -393,6 +404,7 @@
                 </div>
                 <h3>Kelola Testimoni</h3>
                 <p>Lihat atau hapus testimoni</p>
+            </a>
         </div>
     </div>
 

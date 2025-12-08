@@ -71,11 +71,18 @@
             align-items: center;
         }
 
-
+        .logo-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
         .logo-wrapper img {
-            height: 300px;
-            width: auto;
+            height: 100%;
+            width: 100%;
             object-fit: contain;
         }
 
@@ -216,144 +223,117 @@
 
             .login-container {
                 max-width: 100%;
-                padding: 1rem 0;
-                min-height: auto;
+                width: 100%;
             }
 
             .login-card {
-                padding: 1.25rem;
-                border-radius: 8px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+                padding: 1.5rem;
+                border-radius: 10px;
+                box-shadow: var(--shadow-lg);
             }
 
             .login-header {
-                margin-bottom: 1.25rem;
-                text-align: center;
+                margin-bottom: 1.5rem;
             }
 
             .logo-wrapper {
-                width: 50px;
-                height: 50px;
-                margin: 0 auto 0.75rem;
+                width: 70px;
+                height: 70px;
+                margin: 0 auto 1rem;
             }
 
             .login-header h1 {
-                font-size: 1.25rem;
-                margin-bottom: 0.25rem;
+                font-size: 1.5rem;
+                margin-bottom: 0.35rem;
                 font-weight: 700;
             }
 
             .login-header p {
-                font-size: 0.8rem;
-                color: #666;
+                font-size: 0.9rem;
             }
 
             .form-group {
-                margin-bottom: 0.9rem;
+                margin-bottom: 1rem;
             }
 
             label {
-                font-size: 0.85rem;
-                margin-bottom: 0.35rem;
-                font-weight: 600;
-                display: block;
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
             }
 
             input {
-                padding: 0.65rem;
-                font-size: 0.85rem;
-                border: 1px solid #ddd;
-                border-radius: 6px;
-                width: 100%;
-                font-family: 'Poppins', sans-serif;
-            }
-
-            input:focus {
-                outline: none;
-                border-color: #2e7d32;
-                box-shadow: 0 0 0 3px rgba(46,125,50,0.1);
+                padding: 0.75rem;
+                font-size: 0.95rem;
+                border-radius: 8px;
             }
 
             .btn-primary {
-                padding: 0.65rem;
-                font-size: 0.9rem;
-                gap: 0.3rem;
-                width: 100%;
+                padding: 0.75rem;
+                font-size: 0.95rem;
             }
 
-            .btn-primary:hover {
-                transform: translateY(-1px);
+            .password-toggle {
+                width: 36px;
+                height: 36px;
             }
 
             .errors {
-                padding: 0.75rem;
-                margin-bottom: 0.75rem;
-                gap: 0.5rem;
-                border-radius: 6px;
-                font-size: 0.85rem;
+                padding: 0.9rem;
+                margin-bottom: 1rem;
+                border-radius: 8px;
             }
 
             .errors li {
-                font-size: 0.8rem;
-                margin-bottom: 0.25rem;
+                font-size: 0.9rem;
+                margin-bottom: 0.35rem;
             }
         }
 
         @media (min-width: 641px) and (max-width: 768px) {
-            .login-card {
-                padding: 1.75rem;
+            .login-container {
                 max-width: 420px;
+            }
+
+            .login-card {
+                padding: 2rem;
+            }
+
+            .logo-wrapper {
+                width: 75px;
+                height: 75px;
             }
 
             .login-header h1 {
                 font-size: 1.5rem;
             }
 
-            .login-header p {
+            label {
                 font-size: 0.95rem;
             }
 
             input {
-                padding: 0.75rem;
+                padding: 0.8rem;
                 font-size: 0.95rem;
             }
 
             .btn-primary {
-                padding: 0.75rem;
+                padding: 0.8rem;
                 font-size: 1rem;
-            }
-
-            label {
-                font-size: 0.95rem;
             }
         }
 
         @media (min-width: 769px) {
             .login-container {
-                min-height: 100vh;
+                max-width: 400px;
             }
 
             .login-card {
-                max-width: 450px;
                 padding: 2.5rem;
             }
 
-            .login-header h1 {
-                font-size: 1.75rem;
-            }
-
-            label {
-                font-size: 1rem;
-            }
-
-            input {
-                padding: 0.875rem;
-                font-size: 1rem;
-            }
-
-            .btn-primary {
-                padding: 0.875rem;
-                font-size: 1.05rem;
+            .logo-wrapper {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>

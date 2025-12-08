@@ -660,6 +660,17 @@
                                 <span class="detail-value">Rp ${formatRupiah(sisaBayar)}</span>
                             </div>
                         `;
+                    } else if (pesanan.metode_bayar === 'full_cash_on_site') {
+                        paymentInfo = `
+                            <div class="detail-item">
+                                <span class="detail-label">Total Harga:</span>
+                                <span class="detail-value">Rp ${formatRupiah(totalFull)}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Status Pembayaran:</span>
+                                <span class="detail-value"><span style="background: #ffc107; color: #856404; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Menunggu di Tempat</span></span>
+                            </div>
+                        `;
                     } else {
                         paymentInfo = `
                             <div class="detail-item">
@@ -715,7 +726,7 @@
                             ${addonsHtml}
                             <div class="detail-item">
                                 <span class="detail-label">Metode Bayar:</span>
-                                <span class="detail-value">${pesanan.metode_bayar === 'dp_50%' ? 'DP 50%' : 'LUNAS'}</span>
+                                <span class="detail-value">${pesanan.metode_bayar === 'dp_50%' ? 'DP 50%' : pesanan.metode_bayar === 'full_cash_on_site' ? 'Full Cash di Tempat' : 'LUNAS'}</span>
                             </div>
                             ${paymentInfo}
                         </div>
